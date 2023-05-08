@@ -14,8 +14,13 @@ export const Global = createGlobalStyle`
         font-size: ${px2vw(18)};
       }
 
+       
+      @media (max-width: 768px) {
+        font-size: ${px2vw(20)};
+      }
+
       @media (min-width: 1024px) {
-        font-size: ${px2vw(16)};
+        font-size: ${px2vw(10)};
       }
 
     }
@@ -23,7 +28,7 @@ export const Global = createGlobalStyle`
 
 body{
     background-color: ${({ theme }) => theme.COLORS.WHITE};
-    color: ${({ theme }) => theme.COLORS.WHITE};
+   
 
     -webkit-font-smoothing: antialiased;
 }
