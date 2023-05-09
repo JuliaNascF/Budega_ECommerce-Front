@@ -11,8 +11,6 @@ export  function AppRoutes(){
        <Route path='/' element = {<Home/>}/>
        <Route path='/details/:id' element = {<Details/>}/>
 
-
-
      </Routes>
 
 

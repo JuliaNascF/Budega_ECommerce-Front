@@ -10,4 +10,9 @@ export const Container = styled.button`
   gap: 8px;
   display: flex;
   align-items: center;
+
+  &.color{
+    color: red;
+  
+  }
 `; 

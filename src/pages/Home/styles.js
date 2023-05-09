@@ -82,6 +82,7 @@ export const Content = styled.div`
 
   max-width: ${px2vw(1070)};
   margin: 0 auto;
+  padding-bottom: 50px;
  
   .HeaderPage{
     height: 100px;
@@ -96,6 +97,7 @@ export const Content = styled.div`
 
 export const Category = styled.div`
    display: flex;
+  
 
   > .products {
     display: flex;
