@@ -3,7 +3,7 @@ import px2vw from "../../utils/px2vw";
 
 
 export const Container = styled.button`
- width: ${px2vw(300)};
+ width: 100%;
 
   background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
   color: ${({ theme }) => theme.COLORS.WHITE};

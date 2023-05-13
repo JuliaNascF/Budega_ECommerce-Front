@@ -10,7 +10,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AiTwotoneStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
-
+import { useAuth } from "../../hooks/auth"
 
 export function Details() {
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -20,6 +20,9 @@ export function Details() {
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
+ 
+
+
   const params = useParams();
   const navigate = useNavigate();
 
@@ -65,6 +68,26 @@ export function Details() {
   function handleFavoriteClick() {
     setIsFavorite(!isFavorite);
   }
+  const { user } = useAuth(); // Obter o objeto de contexto de autenticação
+
+  async function AddToCart() {
+    console.log(user)
+    if (user && user._id) {
+      try {
+        const response = await api.post(`/cart/${currentProductId}`);
+        alert("Produto adicionado ao carrinho!");
+      } catch (error) {
+        alert("Erro ao adicionar produto ao carrinho!");
+      }
+    } else {
+      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
+      alert("Você precisa estar logado para adicionar produtos ao carrinho!");
+      // ou redirecione o usuário para a página de login:
+      // history.push('/login');
+      navigate("/signin")
+    }
+  }
+  
 
   return (
     <Container>
@@ -122,7 +145,7 @@ export function Details() {
 
               <div className="buttons">
                 <Button title="Comprar" />
-                <Button title="Adicionar ao carrinho" cart />
+                <Button title="Adicionar ao carrinho" cart onClick={ AddToCart} />
               </div>
 
             </div>

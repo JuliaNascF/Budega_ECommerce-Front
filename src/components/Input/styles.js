@@ -38,6 +38,23 @@ export const Container = styled.div`
 
 }
 
+&.login{
+  background: none;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+    background: transparent;
+    border-bottom: 1px solid #FFFFFF;
+    margin: 10px;
+   
+    
+    > input{
+      color: ${({ theme }) => theme.COLORS.WHITE};
+          &::placeholder{
+              color: ${({ theme }) => theme.COLORS.WHITE};
+      
+          }
+    }
+}
+
 
 
 `;

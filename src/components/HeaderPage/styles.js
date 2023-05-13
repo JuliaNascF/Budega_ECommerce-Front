@@ -5,11 +5,6 @@ import styled from "styled-components";
   display: flex;
   flex-direction: column;
   
-  
- 
-  
-
-
 
   >h1{
     margin-top:20px;
