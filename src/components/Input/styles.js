@@ -8,6 +8,7 @@ export const Container = styled.div`
    width: 100%;
    display: flex;
    align-items: center;
+ 
 
    background-color: ${({ theme }) => theme.COLORS.WHITE};
    color: ${({ theme }) => theme.COLORS.BLACK};
@@ -52,6 +53,20 @@ export const Container = styled.div`
               color: ${({ theme }) => theme.COLORS.WHITE};
       
           }
+    }
+}
+
+
+&.quantity{
+
+    background-color: #E3E3E3;
+    width: 40px;
+   
+    
+    > input{
+      text-align:center;
+      color: ${({ theme }) => theme.COLORS.GRAY_900};
+     
     }
 }
 

@@ -3,9 +3,16 @@ import { Input } from "../Input";
 import logo from "../../assets/logo.svg";
 import menu from "../../assets/menu.svg";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 
 export function Header({  search, setSearch }) {
+
+  const navigate= useNavigate();
+
+  function handleCart(){
+      navigate("/cart")
+  }
   return (
     <Container>
       <img className="menu" src={menu} />
@@ -16,7 +23,7 @@ export function Header({  search, setSearch }) {
 
       <p>Favoritos</p>
 
-      <div className="bag">
+      <div onClick={handleCart} className="bag">
         <span>{<HiOutlineShoppingBag />}</span>
         Sacola
       </div>

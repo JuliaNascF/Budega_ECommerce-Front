@@ -32,6 +32,7 @@ p{
 }
 
 .bag{
+    cursor: pointer; 
     color: ${({ theme }) => theme.COLORS.WHITE};
     display: flex ;
     justify-content: center;
