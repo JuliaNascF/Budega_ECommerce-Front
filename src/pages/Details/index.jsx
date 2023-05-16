@@ -16,7 +16,6 @@ export function Details() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
-  const [products, setProducts] = useState([]);
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
@@ -31,6 +30,7 @@ export function Details() {
   }
 
   function handleDetails(id) {
+    setCurrentProductId(id);
     navigate(`/details/${id}`)
   }
 
@@ -72,6 +72,7 @@ export function Details() {
 
   async function AddToCart() {
     console.log(user)
+    
     if (user && user._id) {
       try {
         const response = await api.post(`/cart/${currentProductId}`);

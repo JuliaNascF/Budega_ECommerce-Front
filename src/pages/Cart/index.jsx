@@ -30,7 +30,9 @@ export function Cart() {
         
         {cartItems.length > 0 ? (
           cartItems.map(item => (
-            <CartItem key={item.productId._id} data={item.productId} />
+            <CartItem  key={item.productId}
+            data={item}
+           />
           ))
         ) : (
           <p>Your cart is empty.</p>
