@@ -7,7 +7,8 @@ import { useCart } from "../CartContext/index";
 
 export function  CartItem({ data, ...rest }){
   const { cartItems, updateCartItem } = useCart();
-  const { price, title, thumbnail } = data?.product || {};
+  const { price, title, thumbnail } = data.product;
+
   const quantity = cartItems[data.productId] || 1;
 
   async function increaseQuantity() {
