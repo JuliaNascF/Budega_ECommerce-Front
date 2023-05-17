@@ -62,6 +62,7 @@ export const Container = styled.div`
     background-color: #E3E3E3;
     width: 40px;
    
+   
     
     > input{
       text-align:center;
@@ -69,6 +70,19 @@ export const Container = styled.div`
      
     }
 }
+
+&.freight{
+
+  background: transparent;
+    border-bottom: 2px solid #158A8A;
+    width: 200px;
+
+> input{
+  color: ${({ theme }) => theme.COLORS.GRAY_900};
+ 
+}
+}
+
 
 
 

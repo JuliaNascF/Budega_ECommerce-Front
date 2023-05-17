@@ -60,7 +60,8 @@ export function  CartItem({ data, ...rest }){
         <div className="quantity">
             
           <button onClick={decreaseQuantity}>-</button>
-          <Input type="number"
+          <Input 
+          quantity
         value={quantity}
         readOnly />
           <button onClick={increaseQuantity}>+</button>

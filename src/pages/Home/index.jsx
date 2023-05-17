@@ -111,8 +111,6 @@ const luminariaProductContainerRef = useRef(null);
 
           <Category>
 
-
-
             <ButtonText
               icon={MdOutlineArrowBackIosNew}
               onClick={() => scrollLeft('sofa')}/>
