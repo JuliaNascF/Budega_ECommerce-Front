@@ -40,9 +40,6 @@ export const Content = styled.div`
   max-width: 1130px;
   margin: 0 auto;
   
- .productValue{
-  margin: 40px;
- }
  
  >p{
   font-size: 35px;
@@ -55,63 +52,13 @@ export const Content = styled.div`
   
  }
 
- .priceDetails{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content:center;
- }
- 
-
- .priceCart{
-   display: flex;
-   gap: 200px;
-   margin-top:20px;
-   
-   .text{
-    h2{
-      margin-top:20px;
-    }
-   }
-
-   .price{
-    h2{
-      margin-top:20px;
-    }
-     
-   }
-
-
-   p2{
-      display: flex;
-      gap: 50px;
-      color:${({ theme }) => theme.COLORS.GRAY_900};
-      font-size:18px;
-    }
-
- }
 
   @media(max-width:1130px){
   max-width: 800px;
   margin: 0 auto;
   }
 
-  .home{
-    display: flex;
-    gap: 20px;
-
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-       
-      }
-     :hover{
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};
-       
-      }
-     }
-     
-    }
+  
 
     h1{
       font-size: 25px;
@@ -119,15 +66,7 @@ export const Content = styled.div`
       margin-top: 20px;
     }
 
-    h2{
-      font-size: 22px;
-      color:${({ theme }) => theme.COLORS.GRAY_900};
-    }
-
-   .pay{
-    margin:30px;
-   }
-    
+   
 `;
 
 

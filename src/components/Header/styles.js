@@ -27,6 +27,7 @@ gap: 64px;
 }
 
 p{
+    cursor: pointer;
     color: ${({ theme }) => theme.COLORS.WHITE};
     font-size: 16px;
 }

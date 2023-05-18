@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 
-
 import  Home  from '../pages/Home'
 import { Details } from '../pages/Details'
 import { SignIn } from '../pages/SignIn'
 import { SignUp } from '../pages/SignUp';
-import { Cart } from '../pages/Cart'
+import { Cart } from '../pages/Cart';
+import { Favorites } from '../pages/Favorites'
 
 
 
@@ -17,6 +17,8 @@ export  function AppRoutes(){
        <Route path='/signin' element = {<SignIn/>}/>
        <Route path='/register' element = {<SignUp/>}/>
        <Route path='/cart' element = {<Cart/>}/>
+       <Route path='/favorites' element = {<Favorites/>}/>
+
      
          
      </Routes>

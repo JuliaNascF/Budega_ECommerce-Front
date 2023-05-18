@@ -21,7 +21,7 @@ export function Details() {
   const [currentProductId, setCurrentProductId] = useState('');
  
 
-
+  const { user } = useAuth(); // Obter o objeto de contexto de autenticação
   const params = useParams();
   const navigate = useNavigate();
 
@@ -66,9 +66,65 @@ export function Details() {
   }
 
   function handleFavoriteClick() {
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      removeFromFavorites();
+    } else {
+      addToFavorites();
+    }
   }
-  const { user } = useAuth(); // Obter o objeto de contexto de autenticação
+  
+  async function addToFavorites() {
+    if (user && user._id) {
+      try {
+        const response = await api.post(`/favorites/${currentProductId}`);
+        setIsFavorite(true);
+        
+      } catch (error) {
+        alert("Erro ao adicionar produto aos favoritos!");
+      }
+    } else {
+      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
+      alert("Você precisa estar logado para adicionar produtos aos favoritos!");
+      // ou redirecione o usuário para a página de login:
+      // history.push('/login');
+      navigate("/signin");
+    }
+  }
+  
+  async function removeFromFavorites() {
+    if (user && user._id) {
+      try {
+        const response = await api.delete(`/favorites/${currentProductId}`);
+        setIsFavorite(false);
+      
+      } catch (error) {
+        alert("Erro ao remover produto dos favoritos!");
+      }
+    } else {
+      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
+      alert("Você precisa estar logado para remover produtos dos favoritos!");
+      // ou redirecione o usuário para a página de login:
+      // history.push('/login');
+      navigate("/signin");
+    }
+  }
+
+  useEffect(() => {
+    async function checkFavoriteStatus() {
+      if (user && user._id) {
+        try {
+          const response = await api.get(`/favorites/check/${currentProductId}`);
+          setIsFavorite(response.data.isFavorite);
+        } catch (error) {
+          
+        }
+      }
+    }
+  
+    checkFavoriteStatus();
+  }, [user, currentProductId]);
+  
+
 
   async function AddToCart() {
  

@@ -13,6 +13,12 @@ export function Header({  search, setSearch }) {
   function handleCart(){
       navigate("/cart")
   }
+
+
+  function handleFavorites(){
+    navigate("/favorites")
+}
+
   return (
     <Container>
       <img className="menu" src={menu} />
@@ -21,7 +27,7 @@ export function Header({  search, setSearch }) {
       <Input placeholder="Pesquisar pelo título"
        />
 
-      <p>Favoritos</p>
+      <p onClick={handleFavorites}>Favoritos</p>
 
       <div onClick={handleCart} className="bag">
         <span>{<HiOutlineShoppingBag />}</span>
