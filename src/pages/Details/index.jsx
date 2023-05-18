@@ -71,7 +71,7 @@ export function Details() {
   const { user } = useAuth(); // Obter o objeto de contexto de autenticação
 
   async function AddToCart() {
-    console.log(user)
+ 
     
     if (user && user._id) {
       try {

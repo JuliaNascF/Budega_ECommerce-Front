@@ -2,40 +2,56 @@ import { Container } from "./styles";
 import { Input } from '../Input/index'
 import { useState, useEffect} from "react";
 import { api } from "../../services/api";
-import { useCart } from "../CartContext/index";
+import { BiX } from 'react-icons/bi'
+import { ButtonText } from "../ButtonText";
 
 
-export function  CartItem({ data, ...rest }){
-  const { cartItems, updateCartItem } = useCart();
+
+export function  CartItem({ data,   fetchCartData, ...rest }){
   const { price, title, thumbnail } = data.product;
+  const [cartItems, setCartItems] = useState(data.quantity);
 
-  const quantity = cartItems[data.productId] || 1;
-
-  async function increaseQuantity() {
-    const newQuantity = quantity + 1;
-    updateCartItem(data.productId, newQuantity);
+  async function updateQuantity(newQuantity) {
+    setCartItems(newQuantity);
     try {
       await api.post(`/cart/${data.productId}`, { quantity: newQuantity });
-      // Restante do código...
+      fetchCartData()
     } catch (error) {
       console.log(error);
-      // Trate os erros adequadamente
+   
     }
+  }
+
+  function increaseQuantity() {
+    const newQuantity = cartItems + 1;
+    updateQuantity(newQuantity);
+
+    
   }
 
   async function decreaseQuantity() {
-    if (quantity > 1) {
-      const newQuantity = quantity - 1;
-      updateCartItem(data.productId, newQuantity);
-      try {
-        await api.post(`/cart/decrease/${data.productId}`, { quantity: newQuantity });
-        // Restante do código...
-      } catch (error) {
-        console.log(error);
-        // Trate os erros adequadamente
-      }
+    const newQuantity = cartItems - 1;
+    
+    setCartItems(newQuantity);
+  try {
+    await api.post(`/cart/decrease/${data.productId}`, { quantity: newQuantity });
+    fetchCartData()
+  } catch (error) {
+    console.log(error);
+    // Trate os erros adequadamente
+  }
+  }
+
+  async function removeProduct() {
+    try {
+      await api.delete(`/cart/${data.productId}`);
+      fetchCartData()
+    } catch (error) {
+      console.log(error);
+   
     }
   }
+  
 
   return(
     <Container {...rest}>
@@ -58,16 +74,20 @@ export function  CartItem({ data, ...rest }){
       <p>10x de R$250 sem juros</p>
         </div>
         
-        <div className="quantity">
-            
+        <div className="quantity"> 
           <button onClick={decreaseQuantity}>-</button>
           <Input 
           quantity
-        value={quantity}
+          value={cartItems}
+          onChange={(e) => setCartItems(parseInt(e.target.value))}
         readOnly />
           <button onClick={increaseQuantity}>+</button>
         </div>
 
+       <div className="remove">
+      <ButtonText onClick={removeProduct} icon={BiX}/>
+
+       </div>
     </Container>
   )
 };

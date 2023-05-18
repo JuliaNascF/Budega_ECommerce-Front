@@ -12,20 +12,22 @@ import { BiHome, BiStore } from 'react-icons/bi'
 export function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  
 
   useEffect(() => {
-    async function fetchCartItems() {
-      try {
-        const response = await api.get('/cart');
-        setCartItems(response.data.cartItems);
-        setTotalPrice(response.data.total);// Set the total price from the response
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    fetchCartData();
+  }, [totalPrice]);
 
-    fetchCartItems();
-  }, []);
+  async function fetchCartData() {
+    try {
+      const response = await api.get("/cart");
+      setCartItems(response.data.cartItems);
+      setTotalPrice(response.data.total);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
 
   return (
     <Container>
@@ -37,6 +39,7 @@ export function Cart() {
             cartItems.map(item => (
               <CartItem key={item.productId}
                 data={item}
+                fetchCartData={fetchCartData} 
               />
             ))
           ) : (

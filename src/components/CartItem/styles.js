@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
-
+  position: relative;
   display: flex;
   gap:20px;
   align-items:center;
@@ -15,18 +15,14 @@ export const Container = styled.div`
 
 
 .details{
+  margin-right: 50px;
+
     >:nth-child(2){
         font-size:18px;
         span{
             font-size:14px
         }
     }
-}
-
-.quantity{
-    display: flex;
-   
-
 }
   
     img{
@@ -47,14 +43,29 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.COLORS.BLACK}
   }
 
+  .quantity{
+    display:flex;
+   
+    button{
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+      border: none;
+      width: 30px;
+      box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), inset -1px -1px 1px rgba(0, 0, 0, 0.25);
+      border-radius: 3px;
+      transform: rotate(179.48deg);
+      
+    }
 
-  button{
-    color: ${({ theme }) => theme.COLORS.WHITE};
-    background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-    border: none;
-    width: 30px;
-    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.4), inset -1px -1px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    transform: rotate(179.48deg);
   }
+
+  .remove{
+    position: absolute;
+    left: 95%;
+    top: 10%;
+    svg{
+      color: ${({ theme }) => theme.COLORS.GRAY_700};
+    }
+  }
+
 `;
