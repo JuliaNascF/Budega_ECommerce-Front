@@ -1,7 +1,7 @@
 import { Container} from "./styles";
 import { Input } from "../Input";
 import logo from "../../assets/logo.svg";
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
@@ -41,7 +41,7 @@ const toggleMenu = () => {
       {sidebar && <Sidebar active={setSidebar} />}
       <img className="Budega" src={logo} />
 
-      <Input placeholder="Pesquisar pelo título"
+      <Input icon={FaSearch} placeholder="Pesquisar pelo título"
        />
 
       <p onClick={handleFavorites}>Favoritos</p>

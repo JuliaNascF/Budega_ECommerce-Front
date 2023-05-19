@@ -1,6 +1,26 @@
-import styled from "styled-components";
-import background from "../../../assets/imgEdit.png"
+import styled, { keyframes } from 'styled-components';
+import background from "../../../assets/ImgMobile.png"
 import px2vw from "../../../utils/px2vw";
+
+
+
+const barsRotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+`;
+
+const timesRotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+`;
 
 export const Container = styled.div`
  
@@ -8,9 +28,8 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: 70px auto auto;
+  grid-template-rows: auto auto;
   grid-template-areas:
-    "header"
     "headerPage"
     "content";
 
@@ -43,7 +62,7 @@ export const Image = styled.div`
  grid-area: headerPage;
  position: relative;
   overflow-y: auto;
-  height:  ${px2vw(250)};
+  height: 300px;
   background: linear-gradient(
     rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0.2)
@@ -60,21 +79,39 @@ export const Image = styled.div`
     align-items: end;
     
     position: absolute;
-    right:  ${px2vw(140)};
-    top:  ${px2vw(60)};
+    left:  ${px2vw(140)};
+    bottom:  ${px2vw(20)};
     
     font-family: 'Prata', serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    
-    
-    span{
-      font-size: 45px;
-    }
-
+    font-size: 45px;
   }
  
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  ${px2vw(70)};
+    gap: 20px;
+   
+  }
+
+.menu {
+    svg {
+        font-size: 30px;
+      color: ${({ theme }) => theme.COLORS.WHITE}; /* Adicione a cor desejada */
+      cursor: pointer;
+      transition:  transform 0.3s ease-in-out;
+    }
+    &.bars-rotate {
+      animation: ${barsRotate} 0.5s forwards;
+    }
+
+    &.times-rotate {
+      animation: ${timesRotate} 0.5s forwards;
+    }
+}
 
 `;
 
@@ -112,5 +149,5 @@ export const Category = styled.div`
 `;
 
 
-  
+
 

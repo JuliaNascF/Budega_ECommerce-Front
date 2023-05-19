@@ -14,7 +14,7 @@ export const Container = styled.div`
    color: ${({ theme }) => theme.COLORS.BLACK};
 
    margin-bottom: 2px;
-   border-radius: 10px;
+   border-radius: 20px;
 
    > input{
     height: 40px;
@@ -35,8 +35,8 @@ export const Container = styled.div`
 }
 
 > svg{
-  margin-left: 16px;
-
+  margin-right: 15px;
+  color: ${({ theme }) => theme.COLORS.GRAY_700};
 }
 
 &.login{

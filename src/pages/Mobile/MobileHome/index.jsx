@@ -2,8 +2,11 @@ import { Container, Content, Image, Category } from "./styles";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
 import { ButtonText } from "../../../components/ButtonText";
+import Sidebar from "../../../components/Sidebar";
 import { useEffect, useState, useRef } from "react";
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md"
+import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
+import { Input } from "../../../components/Input";
 import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
 
@@ -11,6 +14,9 @@ import { api } from "../../../services/api";
  export function MobileHome() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [menuIconAnimation, setMenuIconAnimation] = useState('');
+  const [sidebar, setSidebar] = useState(false)
+
 
 
   useEffect(() => {
@@ -32,7 +38,10 @@ import { api } from "../../../services/api";
     navigate(`/details/${id}`)
   }
 
-
+  const toggleMenu = () => {
+    setSidebar(!sidebar);
+    setMenuIconAnimation(sidebar ? 'bars-rotate' : 'times-rotate');
+  };
 
 const sofaProductContainerRef = useRef(null);
 const mesaProductContainerRef = useRef(null);
@@ -93,10 +102,21 @@ const luminariaProductContainerRef = useRef(null);
     <Container>
       
       <main >
-
+         
         <Image>
+         <header>
+        <div className={`menu ${menuIconAnimation}`} onClick={toggleMenu}>
+        {sidebar ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {sidebar && <Sidebar active={setSidebar} />}
+
+      <Input icon={FaSearch} placeholder="Pesquisar pelo título"
+       />
+
+         </header>
           <h2>
-            Confira nossa <span>Newsletter </span>
+          Newsletter
           </h2>
         </Image>
 
