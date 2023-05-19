@@ -1,5 +1,4 @@
 import { Container, Content, Image, Category } from "./styles";
-import { Header } from "../../../components/Header";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
 import { ButtonText } from "../../../components/ButtonText";
@@ -9,20 +8,24 @@ import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
 
 
-
-
-function Home() {
+ export function MobileHome() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     async function fetchProducts() {
-      const resp = await api.get(`/products`);
-
-      setProducts(resp.data);
+      try {
+        const resp = await api.get(`/products`);
+        setProducts(resp.data);
+        setIsLoading(false); 
+      } catch (error) {
+        console.log('Erro ao carregar os produtos:', error);
+        setIsLoading(false); 
+      }
     }
     fetchProducts();
   }, []);
-   
   const navigate = useNavigate();
 
   function handleDetails(id) {
@@ -88,9 +91,7 @@ const luminariaProductContainerRef = useRef(null);
 
   return (
     <Container>
-      <Header />
-
-
+      
       <main >
 
         <Image>
@@ -260,4 +261,4 @@ const luminariaProductContainerRef = useRef(null);
 };
 
 
-export default Home;
+

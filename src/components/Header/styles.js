@@ -87,9 +87,6 @@ p{
     border-color: ${({ theme }) => theme.COLORS.GRAY_700};
 }
 
-@media (max-width: 767px) {
-        display: none;
-      }
 
 
 

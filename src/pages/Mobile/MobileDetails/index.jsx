@@ -12,7 +12,7 @@ import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
 import { useAuth } from "../../../hooks/auth"
 
-export function Details() {
+export function MobileDetails() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -26,7 +26,7 @@ export function Details() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate("/home");
   }
 
   function handleDetails(id) {

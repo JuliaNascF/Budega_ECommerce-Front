@@ -9,7 +9,7 @@ import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from "react-router-dom";
 
-export function Favorites() {
+export function MobileFavorites() {
   const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -29,7 +29,7 @@ export function Favorites() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate("/home");
   }
 
   function handleDetails(id) {
