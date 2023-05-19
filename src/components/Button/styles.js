@@ -21,7 +21,8 @@ export const Container = styled.button`
   }
   
   > svg {
-    margin-right: ${px2vw(5)};
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    margin-right: ${px2vw(15)};
   } 
 
 

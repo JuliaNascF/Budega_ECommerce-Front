@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 import { api } from '../services/api';
 
@@ -8,7 +8,15 @@ export const AuthContext = createContext({});
 function AuthProvider({children}){
    const [data, setData ] = useState({});
 
- 
+   useEffect(() => {
+    const storedUser = localStorage.getItem("@budega:user");
+    const storedToken = localStorage.getItem("@budega:token");
+    
+    if (storedUser && storedToken) {
+      setData({ user: JSON.parse(storedUser), token: storedToken });
+      api.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+    }
+  }, []);
 
    async function signIn({ email, password}){
  

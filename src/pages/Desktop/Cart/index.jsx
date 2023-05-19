@@ -1,20 +1,22 @@
 
 import { Container, Content } from "./styles"
-import { Header } from '../../components/Header'
-import { Input } from "../../components/Input";
-import { Button } from '../../components/Button'
-import { CartItem } from "../../components/CartItem";
-import { ButtonFreight } from "../../components/ButtonFreight";
-import { ButtonText } from "../../components/ButtonText";
+import { Header } from '../../../components/Header'
+import { Input } from "../../../components/Input";
+import { Button } from '../../../components/Button'
+import { CartItem } from "../../../components/CartItem";
+import { ButtonFreight } from "../../../components/ButtonFreight";
+import { ButtonText } from "../../../components/ButtonText";
 import { useState, useEffect } from 'react';
-import { api } from '../../services/api';
+import { api } from '../../../services/api';
 import { BiHome, BiStore } from 'react-icons/bi'
 import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from "react-router-dom";
+import { FaSpinner } from "react-icons/fa";
 
 export function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   useEffect(() => {
@@ -26,8 +28,10 @@ export function Cart() {
       const response = await api.get("/cart");
       setCartItems(response.data.cartItems);
       setTotalPrice(response.data.total);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   }
 
@@ -46,8 +50,9 @@ export function Cart() {
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />
         </div>
         <Content>
-
-          {cartItems.length > 0 ? (
+        {isLoading ? (
+             <FaSpinner size={25} className="loading-spinner" />
+          ) : cartItems.length > 0 ? (
             cartItems.map(item => (
               <CartItem key={item.productId}
                 data={item}

@@ -75,27 +75,26 @@ export function Details() {
   
   async function addToFavorites() {
     if (user && user._id) {
+      setIsFavorite(true);
       try {
         const response = await api.post(`/favorites/${currentProductId}`);
-        setIsFavorite(true);
         
       } catch (error) {
         alert("Erro ao adicionar produto aos favoritos!");
       }
     } else {
-      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
       alert("Você precisa estar logado para adicionar produtos aos favoritos!");
-      // ou redirecione o usuário para a página de login:
-      // history.push('/login');
+    
+  
       navigate("/signin");
     }
   }
   
   async function removeFromFavorites() {
     if (user && user._id) {
+      setIsFavorite(false);
       try {
         const response = await api.delete(`/favorites/${currentProductId}`);
-        setIsFavorite(false);
       
       } catch (error) {
         alert("Erro ao remover produto dos favoritos!");

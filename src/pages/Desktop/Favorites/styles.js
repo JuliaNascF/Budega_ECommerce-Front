@@ -1,4 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from 'styled-components'
+
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 
 export const Container = styled.div`
@@ -29,7 +39,7 @@ export const Container = styled.div`
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     }
     margin-left: 150px;
-    margin-top: 10px;
+    margin-top: 30px;
   }
 }
 
@@ -40,9 +50,10 @@ export const Content = styled.div`
   max-width: 1130px;
   margin: 0 auto;
   
- .productValue{
-  margin: 40px;
- }
+  display: flex;
+  justify-content:center;
+  flex-wrap :wrap ;
+  gap: 20px;
  
  >p{
   font-size: 35px;
@@ -55,79 +66,44 @@ export const Content = styled.div`
   
  }
 
- .priceDetails{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content:center;
- }
- 
-
- .priceCart{
-   display: flex;
-   gap: 200px;
-   margin-top:20px;
-   
-   .text{
-    h2{
-      margin-top:20px;
-    }
-   }
-
-   .price{
-    h2{
-      margin-top:20px;
-    }
-     
-   }
-
-
-   p2{
-      display: flex;
-      gap: 50px;
-      color:${({ theme }) => theme.COLORS.GRAY_900};
-      font-size:18px;
-    }
-
- }
 
   @media(max-width:1130px){
   max-width: 800px;
   margin: 0 auto;
   }
 
-  .home{
-    display: flex;
-    gap: 20px;
-
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-       
-      }
-     :hover{
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};
-       
-      }
-     }
-     
+  .favorite{
+    cursor: pointer;
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+    position:relative;
+  
+    p{
+      position: absolute;
+      top: 100%;
+      font-size:20px;
+      color: ${({ theme }) => theme.COLORS.GRAY_900};
     }
+  }
+
+  img{
+    width: 300px;
+  }
 
     h1{
-      font-size: 25px;
+      font-size: 20px;
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};
       margin-top: 20px;
     }
 
-    h2{
-      font-size: 22px;
-      color:${({ theme }) => theme.COLORS.GRAY_900};
-    }
+    .loading-spinner {
+   margin-top: 30%;
+ animation:${spin} 1s linear infinite;
+}
 
-   .pay{
-    margin:30px;
-   }
-    
+   
 `;
 
 

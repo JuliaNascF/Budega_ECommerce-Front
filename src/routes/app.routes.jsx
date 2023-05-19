@@ -1,12 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 
-import  Home  from '../pages/Home'
-import { Details } from '../pages/Details'
-import { SignIn } from '../pages/SignIn'
-import { SignUp } from '../pages/SignUp';
-import { Cart } from '../pages/Cart';
-import { Favorites } from '../pages/Favorites'
-
+import  Home  from '../pages/Desktop/Home'
+import { Details } from '../pages/Desktop/Details'
+import { SignIn } from '../pages/Desktop/SignIn'
+import { SignUp } from '../pages/Desktop/SignUp';
+import { Cart } from '../pages/Desktop/Cart';
+import { Favorites } from '../pages/Desktop/Favorites'
 
 
 export  function AppRoutes(){

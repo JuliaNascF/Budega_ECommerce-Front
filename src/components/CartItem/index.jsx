@@ -30,16 +30,17 @@ export function  CartItem({ data,   fetchCartData, ...rest }){
   }
 
   async function decreaseQuantity() {
-    const newQuantity = cartItems - 1;
-    
-    setCartItems(newQuantity);
-  try {
-    await api.post(`/cart/decrease/${data.productId}`, { quantity: newQuantity });
-    fetchCartData()
-  } catch (error) {
-    console.log(error);
-    // Trate os erros adequadamente
-  }
+    if (cartItems > 1) {
+      const newQuantity = cartItems - 1;
+      setCartItems(newQuantity);
+      try {
+        await api.post(`/cart/decrease/${data.productId}`, { quantity: newQuantity });
+        fetchCartData();
+      } catch (error) {
+        console.log(error);
+      
+      }
+    }
   }
 
   async function removeProduct() {
@@ -47,6 +48,7 @@ export function  CartItem({ data,   fetchCartData, ...rest }){
       await api.delete(`/cart/${data.productId}`);
       fetchCartData()
     } catch (error) {
+    
       console.log(error);
    
     }

@@ -1,9 +1,29 @@
-import styled from 'styled-components'
+
 import px2vw from '../../utils/px2vw';
+import styled, { keyframes } from 'styled-components';
+
+
+const barsRotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+`;
+
+const timesRotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+`;
 
 export const Container = styled.header`
 grid-area:header;
-
+position: relative;
 height: 70px;
 width: 100%;
 
@@ -18,9 +38,22 @@ align-items: center;
 padding: 0 ${px2vw(123)};
 gap: 64px;
 
-.menu{
-    width: 50px;
+.menu {
+    svg {
+        font-size: 30px;
+      color: ${({ theme }) => theme.COLORS.WHITE}; /* Adicione a cor desejada */
+      cursor: pointer;
+      transition:  transform 0.3s ease-in-out;
+    }
+    &.bars-rotate {
+      animation: ${barsRotate} 0.5s forwards;
+    }
+
+    &.times-rotate {
+      animation: ${timesRotate} 0.5s forwards;
+    }
 }
+
 
 .Budega{
     width: 250px;
