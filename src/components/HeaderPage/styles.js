@@ -4,9 +4,10 @@ import styled from "styled-components";
   
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
   
 
-  >h1{
+  h1{
     margin-top:20px;
     color:${({ theme }) => theme.COLORS.BLACK}
     

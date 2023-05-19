@@ -8,13 +8,13 @@ export const Container = styled.button`
   background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
   color: ${({ theme }) => theme.COLORS.WHITE};
   
-  height: ${px2vw(40)};
+  height: 40px;
   border: 0;
-  padding: ${px2vw(9)};
+  padding: ${px2vw(5)};
   margin-top: ${px2vw(16)};
   border-radius: ${px2vw(5)};
   font-weight: 500;
-  font-size: ${px2vw(16)};
+  font-size: 20px;
   
   &:disabled {
     opacity: 0.5;
@@ -22,7 +22,7 @@ export const Container = styled.button`
   
   > svg {
     color: ${({ theme }) => theme.COLORS.WHITE};
-    margin-right: ${px2vw(15)};
+    margin-right: 15px;
   } 
 
 

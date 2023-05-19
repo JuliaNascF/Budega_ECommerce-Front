@@ -2,9 +2,8 @@ import { Container, Content, Image, Category } from "./styles";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
 import { ButtonText } from "../../../components/ButtonText";
-import Sidebar from "../../../components/Sidebar";
+import SidebarMobile from "../../../components/SidebarMobile";
 import { useEffect, useState, useRef } from "react";
-import { MdOutlineArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md"
 import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
 import { Input } from "../../../components/Input";
 import { useNavigate } from 'react-router-dom';
@@ -41,67 +40,22 @@ import { api } from "../../../services/api";
   const toggleMenu = () => {
     setSidebar(!sidebar);
     setMenuIconAnimation(sidebar ? 'bars-rotate' : 'times-rotate');
-  };
-
-const sofaProductContainerRef = useRef(null);
-const mesaProductContainerRef = useRef(null);
-const cadeiraProductContainerRef = useRef(null);
-const luminariaProductContainerRef = useRef(null);
-
-
-
-  const scrollLeft = (category) => {
-    if (category === 'sofa') {
-      sofaProductContainerRef.current.scrollBy({
-        left: -180,
-        behavior: "smooth",
-      });
-    } else if (category === 'mesa') {
-      mesaProductContainerRef.current.scrollBy({
-        left: -180,
-        behavior: "smooth",
-      });
-    } else if (category === 'cadeira') {
-      cadeiraProductContainerRef.current.scrollBy({
-        left: -180,
-        behavior: "smooth",
-      });
-    } else if (category === 'luminaria') {
-      luminariaProductContainerRef.current.scrollBy({
-        left: -180,
-        behavior: "smooth",
-      });
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      if (!sidebar) {
+        mainElement.classList.add("no-scroll");
+      } else {
+        mainElement.classList.remove("no-scroll");
+      }
     }
   };
-  
-  const scrollRight = (category) => {
-    if (category === 'sofa') {
-      sofaProductContainerRef.current.scrollBy({
-        left: 180,
-        behavior: "smooth",
-      });
-    } else if (category === 'mesa') {
-      mesaProductContainerRef.current.scrollBy({
-        left: 180,
-        behavior: "smooth",
-      });
-    } else if (category === 'cadeira') {
-      cadeiraProductContainerRef.current.scrollBy({
-        left: 180,
-        behavior: "smooth",
-      });
-    } else if (category === 'luminaria') {
-      luminariaProductContainerRef.current.scrollBy({
-        left: 180,
-        behavior: "smooth",
-      });
-    }
-  };
+
+
 
   return (
     <Container>
       
-      <main >
+      <main className={sidebar ? "no-scroll" : ""}>
          
         <Image>
          <header>
@@ -109,7 +63,7 @@ const luminariaProductContainerRef = useRef(null);
         {sidebar ? <FaTimes /> : <FaBars />}
       </div>
 
-      {sidebar && <Sidebar active={setSidebar} />}
+      {sidebar && <SidebarMobile active={setSidebar} />}
 
       <Input icon={FaSearch} placeholder="Pesquisar pelo título"
        />
@@ -121,7 +75,7 @@ const luminariaProductContainerRef = useRef(null);
         </Image>
 
 
-        <Content  >
+        <Content   >
 
 
           <div className="HeaderPage" style={{ position: "sticky", top: "0px", zIndex: "999" }}>
@@ -132,14 +86,12 @@ const luminariaProductContainerRef = useRef(null);
 
           <Category>
 
-            <ButtonText
-              icon={MdOutlineArrowBackIosNew}
-              onClick={() => scrollLeft('sofa')}/>
+    
 
             <div className="products" style={{
               display: "flex",
               scrollBehavior: "smooth"
-            }} ref={sofaProductContainerRef}>
+            }} >
 
               {products
                 .filter((product) => product.category === "sofa")
@@ -155,10 +107,7 @@ const luminariaProductContainerRef = useRef(null);
                 ))}
             </div>
 
-            <ButtonText
-              icon={MdOutlineArrowForwardIos}
-              onClick={() => scrollRight('sofa')}
-            />
+           
 
 
           </Category>
@@ -169,14 +118,11 @@ const luminariaProductContainerRef = useRef(null);
 
 
 
-            <ButtonText
-              icon={MdOutlineArrowBackIosNew}
-              onClick={() => scrollLeft('mesa')} />
 
             <div className="products" style={{
               display: "flex",
               scrollBehavior: "smooth"
-            }} ref={ mesaProductContainerRef }>
+            }} >
               {products
                 .filter((product) => product.category === "mesa")
                 .map((product) => (
@@ -191,11 +137,7 @@ const luminariaProductContainerRef = useRef(null);
                 ))}
             </div>
 
-            <ButtonText
-              icon={MdOutlineArrowForwardIos}
-              onClick={() => scrollRight('mesa')}
-            />
-
+       
 
           </Category>
 
@@ -204,14 +146,11 @@ const luminariaProductContainerRef = useRef(null);
 
 
 
-            <ButtonText
-              icon={MdOutlineArrowBackIosNew}
-              onClick={() => scrollLeft('cadeira')} />
 
             <div className="products" style={{
               display: "flex",
               scrollBehavior: "smooth"
-            }} ref={cadeiraProductContainerRef}>
+            }}>
               {products
                 .filter((product) => product.category === "cadeira")
                 .map((product) => (
@@ -226,11 +165,7 @@ const luminariaProductContainerRef = useRef(null);
                 ))}
             </div>
 
-            <ButtonText
-              icon={MdOutlineArrowForwardIos}
-              onClick={() => scrollRight('cadeira')}
-            />
-
+        
 
           </Category>
 
@@ -240,14 +175,11 @@ const luminariaProductContainerRef = useRef(null);
 
 
 
-            <ButtonText
-              icon={MdOutlineArrowBackIosNew}
-              onClick={() => scrollLeft('luminaria')}/>
 
             <div className="products" style={{
               display: "flex",
               scrollBehavior: "smooth"
-            }} ref={luminariaProductContainerRef}>
+            }} >
               {products
                 .filter((product) => product.category === "luminaria")
                 .map((product) => (
@@ -261,11 +193,6 @@ const luminariaProductContainerRef = useRef(null);
                   />
                 ))}
             </div>
-
-            <ButtonText
-              icon={MdOutlineArrowForwardIos}
-              onClick={() => scrollRight('luminaria')}
-            />
 
 
           </Category>

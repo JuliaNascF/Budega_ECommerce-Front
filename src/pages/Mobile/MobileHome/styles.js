@@ -37,18 +37,14 @@ export const Container = styled.div`
     grid-area: content;
     overflow-y: auto;
     
-   
-    &::-webkit-scrollbar {
-      width: 6px;
-     
-    }
-    &::-webkit-scrollbar-thumb{
-      background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-      border-radius: 8px;
-    }
+    &.no-scroll {
+      overflow: hidden;
+  }
+
+ 
     
      h3 {
-    margin-top: 40px;
+
     margin-bottom: 20px;
     font-size: 22px;
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_800}
@@ -67,6 +63,7 @@ export const Image = styled.div`
     rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0.2)
   ), url(${background});
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
  
   background-repeat: no-repeat;
   background-size: cover;
@@ -124,10 +121,13 @@ export const Content = styled.div`
   .HeaderPage{
     height: 100px;
     background:${({ theme }) => theme.COLORS.WHITE};
-
+   h1{
+    font-size: 20px;
+   }
 
   
   }
+
  
 `;
 
@@ -140,6 +140,7 @@ export const Category = styled.div`
     display: flex;
     overflow-x: auto;
     gap: 15px;
+    padding: 20px;
 
     &::-webkit-scrollbar {
       display: none;

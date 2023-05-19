@@ -44,7 +44,8 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.COLORS.WHITE};
     background: transparent;
     border-bottom: 1px solid #FFFFFF;
-    margin: 10px;
+    margin: 10px; 
+    border-radius: 8px;
    
     
     > input{
@@ -61,6 +62,7 @@ export const Container = styled.div`
 
     background-color: #E3E3E3;
     width: 40px;
+    border-radius: 8px;
    
    
     
@@ -76,6 +78,7 @@ export const Container = styled.div`
   background: transparent;
     border-bottom: 2px solid #158A8A;
     width: 200px;
+    border-radius: 10px;
 
 > input{
   color: ${({ theme }) => theme.COLORS.GRAY_900};
