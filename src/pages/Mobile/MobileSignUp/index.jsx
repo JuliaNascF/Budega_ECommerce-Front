@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Form } from "./styles";
 import { FiMail, FiLock, FiUser } from 'react-icons/fi'
-import logo from "../../../assets/logo.svg"
+import logo from "../../../assets/logoMobile.svg"
 import { api } from '../../../services/api';
 import { Input } from '../../../components/Input/index'
 import { Button } from '../../../components/Button/index'
@@ -44,17 +44,14 @@ export function MobileSignUp() {
 
     return (
         <Container>
-            
-            <h1>Mais que venda <span>conceito</span></h1>
-
-
+          
             <main>
 
             <Form>
             <img className="Budega" src={logo} />
              
                <Input
-                    login
+                    loginMobile
                     placeholder="Nome"
                     type="text"
                     icon={FiUser}
@@ -65,7 +62,7 @@ export function MobileSignUp() {
 
 
                 <Input
-                    login
+                    loginMobile
                     placeholder="E-mail"
                     type="text"
                     icon={FiMail}
@@ -74,7 +71,7 @@ export function MobileSignUp() {
                 />
 
                 <Input
-                    login
+                    loginMobile
                     placeholder="Senha"
                     type="password"
                     icon={FiLock}
