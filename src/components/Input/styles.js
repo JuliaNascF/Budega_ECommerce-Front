@@ -57,6 +57,23 @@ export const Container = styled.div`
     }
 }
 
+&.loginMobile{
+  background: none;
+  color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+    background: transparent;
+    border-bottom: 2px solid #158A8A;
+    margin: 10px; 
+    border-radius: 8px;
+   
+    > input{
+      color: ${({ theme }) => theme.COLORS.GRAY_700};
+          &::placeholder{
+              color: ${({ theme }) => theme.COLORS.GRAY_700};
+      
+          }
+    }
+}
+
 
 &.quantity{
 

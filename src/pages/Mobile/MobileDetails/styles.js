@@ -7,7 +7,8 @@ export const Container = styled.div`
 
   > main {
     overflow-y: auto;
-    margin: 30px;
+ 
+    padding: 30px;
   
     .back{
       svg{
@@ -84,7 +85,8 @@ export const Content = styled.div`
       
     }
     .Slider{
-      width: 450px;
+     margin-left: 15%;
+     width: 220px;
  
     }
 

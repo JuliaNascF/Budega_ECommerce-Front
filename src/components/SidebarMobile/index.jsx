@@ -21,7 +21,7 @@ const SidebarMobile = ({sidebar, active }) => {
     <Container sidebar={active}>
     
       <Content>
-      <Button icon={ FaHeart} onClick={handleFavorites} title="Favorites" />
+      <Button icon={ FaHeart} onClick={handleFavorites} title="Favoritos" />
       <Button icon={ FaSignOutAlt} onClick={handleSignOut} title="SignOut" />
      
       </Content>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Form } from "./styles";
 import { FiMail, FiLock } from 'react-icons/fi'
-import logo from "../../../assets/logo.svg"
+import logo from "../../../assets/logoMobile.svg"
 import { useAuth } from '../../../hooks/auth'
 import { useNavigate } from "react-router-dom";
 import { Input } from '../../../components/Input/index'
@@ -19,7 +19,6 @@ export function MobileSignIn() {
     function handleSignIn() {
       signIn({ email, password })
         .then(() => {
-          // Verifica se o usuário está autenticado
           const isAuthenticated = localStorage.getItem('@budega:token') !== null;
           if (isAuthenticated) {
             navigate('/')
@@ -38,18 +37,16 @@ export function MobileSignIn() {
 
     return (
         <Container>
-            
-            <h1>Mais que venda <span>conceito</span></h1>
-
+         
 
             <main>
-
             <Form>
+
             <img className="Budega" src={logo} />
              
 
                 <Input
-                    login
+                    loginMobile
                     placeholder="E-mail"
                     type="text"
                     icon={FiMail}
@@ -58,7 +55,7 @@ export function MobileSignIn() {
                 />
 
                 <Input
-                    login
+                    loginMobile
                     placeholder="Senha"
                     type="password"
                     icon={FiLock}
@@ -67,7 +64,7 @@ export function MobileSignIn() {
 
                 <Button title= "Entrar" onClick= {handleSignIn}/>
 
-                  <p> Não tem conta?  <span onClick={handleSignUp}>Registrar</span>  </p> 
+                  <p> Não tem conta?  <span onClick={handleSignUp}>Criar conta</span>  </p> 
                  
             </Form>
                     </main>

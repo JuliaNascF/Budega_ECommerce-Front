@@ -211,7 +211,7 @@ export function MobileDetails() {
 
           <Slider 
             infinite={true}
-            slidesToShow={2}
+            slidesToShow={1}
             slidesToScroll={1}
             className="Slider"
             
