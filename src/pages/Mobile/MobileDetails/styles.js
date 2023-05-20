@@ -4,96 +4,73 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  display: grid;
-  grid-template-rows: 70px auto;
-  grid-template-areas: 
-  "header"
-  "content";
-  > main {
-    grid-area: content;
-    overflow-y: auto;
-    padding: 40px 0;
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-    &::-webkit-scrollbar-thumb{
-      background-color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-      border-radius: 8px;
-    }
 
+  > main {
+    overflow-y: auto;
+    margin: 30px;
+  
     .back{
       svg{
         color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
       }
-      margin-left: 150px;
+     
     }
 
   }
   `;
 
 export const Content = styled.div`
-  max-width: 1130px;
-  margin: 0 auto;
-  
+
+ .details{
+  position: relative;
+  margin-top: 25px;
   h1{
-    color:  ${({ theme }) => theme.COLORS.BLACK};
-  }
-   
-
-  @media(max-width:1130px){
-  max-width: 800px;
-  margin: 0 auto;
-  }
-
   
+    color:  ${({ theme }) => theme.COLORS.BLACK};
+    font-size: 20px;
+    span{
+      font-size:16px;
+      font-weight:400;
+    }
+  }
+  
+  p{
+    font-size:12px;
+  }
+  .heart{
+    position: absolute;
+    left: 90%;
+    top: 0;
+  }
+ }
+   
+  .images{
+    display: flex;
+    overflow-x: auto ;
+    width: 400px;
+    img{
+      width: 350px;
+    }
+    margin-bottom:50px;
+  }
 
  .price_heart{
-  height: 38px;
-  display: flex;
-  justify-content: space-between;
-
-  >:last-child{
-    margin-top: 20px;
+  >h2{
+    color:  ${({ theme }) => theme.COLORS.BLACK};
+    font-size: 20px;
   }
  }
 
-.selected-image{
-  img{
-    width: 600px;
-   
-
-  }
-}
-
-  .image-gallery{
-    display: flex;
-    gap: 20px;
-    margin-top:20px;
-
-  }
+ 
 
   .stars{
     svg {
     color: rgba(255, 214, 70, 1);
+    font-size: 15px;
   }
   }
 
-  .thumbnails{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 40px;
-    img{
-      cursor:pointer;
-      width: 100px;
-    }
-
-    img.active{
-      border: 1px solid #DBDBDB;
-      border-radius: 3px
-    }
-
-  }
+ 
 
     .buttons{
       margin-top: 50px;
@@ -102,15 +79,16 @@ export const Content = styled.div`
 
     h2{
       margin-top:100px;
-     
+      font-size: 20px;
+   
+      
+    }
+    .Slider{
+      width: 450px;
+ 
     }
 
-    .relatedProducts{
-      display: flex;
-      gap: 15px;
-      padding: 20px;
-    }
-
+ 
     h3{
       font-size:15px;
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};

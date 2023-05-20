@@ -1,6 +1,5 @@
 
 import { Container, Content } from "./styles"
-import { Header } from '../../../components/Header'
 import { Button } from '../../../components/Button'
 import { ButtonText } from '../../../components/ButtonText'
 import { Product } from "../../../components/Product"
@@ -11,6 +10,10 @@ import { AiTwotoneStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
 import { useAuth } from "../../../hooks/auth"
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 export function MobileDetails() {
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -19,7 +22,7 @@ export function MobileDetails() {
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
- 
+
 
   const { user } = useAuth(); // Obter o objeto de contexto de autenticação
   const params = useParams();
@@ -59,11 +62,9 @@ export function MobileDetails() {
     if (category) {
       fetchRelatedProducts();
     }
-  }, [category,  currentProductId]);
+  }, [category, currentProductId]);
 
-  function handleThumbnailClick(index) {
-    setSelectedIndex(index);
-  }
+
 
   function handleFavoriteClick() {
     if (isFavorite) {
@@ -72,30 +73,30 @@ export function MobileDetails() {
       addToFavorites();
     }
   }
-  
+
   async function addToFavorites() {
     if (user && user._id) {
       setIsFavorite(true);
       try {
         const response = await api.post(`/favorites/${currentProductId}`);
-        
+
       } catch (error) {
         alert("Erro ao adicionar produto aos favoritos!");
       }
     } else {
       alert("Você precisa estar logado para adicionar produtos aos favoritos!");
-    
-  
+
+
       navigate("/signin");
     }
   }
-  
+
   async function removeFromFavorites() {
     if (user && user._id) {
       setIsFavorite(false);
       try {
         const response = await api.delete(`/favorites/${currentProductId}`);
-      
+
       } catch (error) {
         alert("Erro ao remover produto dos favoritos!");
       }
@@ -115,19 +116,19 @@ export function MobileDetails() {
           const response = await api.get(`/favorites/check/${currentProductId}`);
           setIsFavorite(response.data.isFavorite);
         } catch (error) {
-          
+
         }
       }
     }
-  
+
     checkFavoriteStatus();
   }, [user, currentProductId]);
-  
+
 
 
   async function AddToCart() {
- 
-    
+
+
     if (user && user._id) {
       try {
         const response = await api.post(`/cart/${currentProductId}`);
@@ -143,84 +144,91 @@ export function MobileDetails() {
       navigate("/signin")
     }
   }
-  
+
 
   return (
     <Container>
-      <Header />
+
       <main>
         <div className="back">
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />
         </div>
         <Content>
-          <h1>{data.title}</h1>
-          <div className="image-gallery">
-            <div className="thumbnails">
 
-              {data.images && data.images.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  src={imageUrl}
-                  alt={`Thumbnail ${index}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  className={index === selectedIndex ? 'active' : ''}
-                />
+          <Slider dots={true} infinite={true} slidesToShow={1} slidesToScroll={1}>
+            {data.images &&
+              data.images.map((imageUrl, index) => (
+                <img key={index} src={imageUrl} alt={`Image ${index}`} />
               ))}
+          </Slider>
+
+
+
+          <div className="details">
+
+            <h1>{data.title}
+
+            </h1>
+            <div className="heart">
+
+              <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
             </div>
-            <div className="selected-image">
-              <img src={data.images?.[selectedIndex]} alt="Selected" />
+            <div className="stars">
+
+              <AiTwotoneStar />
+              <AiTwotoneStar />
+              <AiTwotoneStar />
+              <AiTwotoneStar />
+              <AiTwotoneStar />
             </div>
-            <div className="details">
 
-              <div className="stars">
+            <div className="price_heart">
 
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-              </div>
-
-              <div className="price_heart">
-
-                <h1>
-                  {data.price && (
-                    <>
-                      {data.price.currency} {data.price.cents}
-                      <span> à vista</span>
-                    </>
-                  )}
-                </h1>
-
-                <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
-              </div>
+              <h1>
+                {data.price && (
+                  <>
+                    {data.price.currency} {data.price.cents}
+                    <span> à vista</span>
+                  </>
+                )}
+              </h1>
 
 
-              <p>10x de R$ 250 sem juros
-              </p>
+            </div>
 
-              <div className="buttons">
-                <Button title="Comprar" />
-                <Button title="Adicionar ao carrinho" cart onClick={ AddToCart} />
-              </div>
 
+            <p>10x de R$ 250 sem juros</p>
+
+            <div className="buttons">
+              <Button title="Comprar" />
+              <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
             </div>
 
           </div>
+
+
           <h2>Produtos Relacionados</h2>
-          <div className="relatedProducts">
 
-          {relatedProducts.map((product) => (
-            <Product
-              key={product._id}
-              thumbnail={product.thumbnail}
-              category={product.category}
-              price={product.price}
-              data={product}
-              onClick={() => handleDetails(product._id)}
-            />
-          ))}
-          </div>
+          <Slider 
+            infinite={true}
+            slidesToShow={2}
+            slidesToScroll={1}
+            className="Slider"
+            
+          >
+            {relatedProducts.map((product) => (
+              <Product
+                key={product._id}
+                thumbnail={product.thumbnail}
+                category={product.category}
+                price={product.price}
+                data={product}
+                onClick={() => handleDetails(product._id)}
+              />
+            ))}
+          </Slider>
+
+
 
           <h3>Descrição</h3>
 
