@@ -39,7 +39,6 @@ export function MobileFavorites() {
 
   return (
     <Container>
-      <Header />
       <main>
         <div className="back">
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />

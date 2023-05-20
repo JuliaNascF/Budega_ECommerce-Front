@@ -66,7 +66,7 @@ export const Container = styled.div`
     border-radius: 8px;
    
     > input{
-      color: ${({ theme }) => theme.COLORS.GRAY_700};
+      color: ${({ theme }) => theme.COLORS.GRAY_900};
           &::placeholder{
               color: ${({ theme }) => theme.COLORS.GRAY_700};
       
