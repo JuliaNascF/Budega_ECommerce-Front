@@ -24,14 +24,15 @@ const timesRotate = keyframes`
 
 export const Container = styled.div`
  
-
+  position: relative;
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: 0 auto;
+  grid-template-rows: 0 auto auto;
   grid-template-areas:
     "headerPage"
-    "content";
+    "content"
+    "footer" ;
 
   > main {
     grid-area: content;
@@ -50,6 +51,15 @@ export const Container = styled.div`
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_800}
   }
 
+  >footer{
+    grid-area: footer;
+    z-index:2000;
+    position:fixed;
+    top: 90%;
+    left: 44%;
+    right: 40%;
+    
+  }
    
   }
 `;

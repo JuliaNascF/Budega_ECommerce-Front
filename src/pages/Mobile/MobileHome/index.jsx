@@ -1,13 +1,15 @@
 import { Container, Content, Image, Category } from "./styles";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
-import { ButtonText } from "../../../components/ButtonText";
+import { Button } from "../../../components/Button";
 import SidebarMobile from "../../../components/SidebarMobile";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
 import { Input } from "../../../components/Input";
 import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
+import { HiOutlineShoppingBag } from "react-icons/hi"; 
+import cart from "../../../assets/cart.svg"
 
 
  export function MobileHome() {
@@ -36,6 +38,11 @@ import { api } from "../../../services/api";
   function handleDetails(id) {
     navigate(`/details/${id}`)
   }
+
+  function handleCart() {
+    navigate(`/cart`)
+  }
+
 
   const toggleMenu = () => {
     setSidebar(!sidebar);
@@ -200,8 +207,12 @@ import { api } from "../../../services/api";
 
 
         </Content>
-      </main>
 
+       <footer>
+         <img onClick={handleCart} src={cart} alt="" />
+       </footer>
+      </main>
+       
 
     </Container>
   );
