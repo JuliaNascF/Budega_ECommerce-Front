@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import px2vw from "../../utils/px2vw";
 
 export const Container = styled.div`
   width: 100%;
@@ -8,7 +9,7 @@ export const Container = styled.div`
   align-items:center;
  
   padding: 40px;
-  border: 1px solid #AEA3A3;
+  border-bottom: 1px solid #AEA3A3;
   border-radius:5px;
 
 
@@ -24,7 +25,7 @@ export const Container = styled.div`
 }
   
     img{
-    width: 200px;
+    width:  200px;
    }
   
     
@@ -66,4 +67,57 @@ export const Container = styled.div`
     }
   }
 
+&.cartMobile{
+ padding: 20px;
+ padding-right: 0px;
+
+ img{
+  width: 100px;
+ }
+
+ .details{
+  margin-right: 0px;
+  width: 150px;
+  >:nth-child(3){
+        font-size:12px;
+      
+    }
+}
+ 
+.quantity{
+    display:flex;
+    gap: 20px;
+    position: absolute;
+    top: 60%;
+    left: 70%;
+    .inputQuantity{
+     position: absolute;
+     left: 40%;
+    
+    }
+    
+    button{
+    
+     margin-left: 20px;
+      width: 20px;
+      height:40px
+   
+      
+    }
+
+  }
+
+
+  .remove{
+    position: absolute;
+    left: 85%;
+    top: 10%;
+    svg{
+      color: ${({ theme }) => theme.COLORS.GRAY_700};
+    }
+  }
+
+ 
+
+}
 `;

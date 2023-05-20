@@ -12,26 +12,26 @@ const spin = keyframes`
 `;
 
 export const Container = styled.button`
- width: 460px;
+ width: 100%;
   display: flex; 
   align-items: center;
+  justify-content:space-between;
   
   gap: 12px;
   background-color: transparent;
   color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
   border: 2px solid #158A8A;
   
-  height: ${px2vw(70)};
-  padding: ${px2vw(20)};
-  margin-top: ${px2vw(16)};
-  margin-bottom: ${px2vw(20)};
-  border-radius: ${px2vw(5)};
+  height: 70px;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
   font-weight: 500;
-  font-size: ${px2vw(16)};
+  font-size: 16px;
 
 
   > svg {
-    margin-right: ${px2vw(5)};
+    margin-right: 5px;
   } 
 
   .title{
@@ -46,9 +46,6 @@ export const Container = styled.button`
     text-align:left;
   }
 
-  p1{
-    margin-left: ${px2vw(45)}
-  }
 
 
 
@@ -56,6 +53,27 @@ export const Container = styled.button`
   animation:${spin} 1s linear infinite;
 }
 
+&.freightMobile{
+ 
+  height: 70px;
+  .title{
+    margin-bottom: 20px;
+
+    >:nth-child(1){
+        font-size: 16px;
+    }
+
+    >:nth-child(2){
+        font-size: 12px;
+      
+    }
+  }
+
+  p1{
+   font-size:16px; 
+   margin-left: 40px;
+  }
+}
 
 
  `

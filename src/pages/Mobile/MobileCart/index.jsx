@@ -1,15 +1,12 @@
 
 import { Container, Content } from "./styles"
-import { Header } from '../../../components/Header'
 import { Input } from "../../../components/Input";
 import { Button } from '../../../components/Button'
 import { CartItem } from "../../../components/CartItem";
 import { ButtonFreight } from "../../../components/ButtonFreight";
-import { ButtonText } from "../../../components/ButtonText";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { BiHome, BiStore } from 'react-icons/bi'
-import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
@@ -44,17 +41,18 @@ export function MobileCart() {
 
   return (
     <Container>
-      <Header />
       <main>
-      <div className="back">
-          <ButtonText onClick={handleBack} icon={FiArrowLeft} />
-        </div>
+            <div className="cart">
+            <h1>Carrinho de compras</h1>
+            </div>
+         
+  
         <Content>
         {isLoading ? (
              <FaSpinner size={25} className="loading-spinner" />
           ) : cartItems.length > 0 ? (
             cartItems.map(item => (
-              <CartItem key={item.productId}
+              <CartItem cartMobile key={item.productId}
                 data={item}
                 fetchCartData={fetchCartData}
               />
@@ -69,7 +67,8 @@ export function MobileCart() {
               <Input freight />
 
               <div className="home">
-                <ButtonFreight
+                <ButtonFreight 
+                  freightMobile
                   title={'Receber em casa'}
                   icon={BiHome}
                   showLoadingIcon={true}
@@ -77,6 +76,7 @@ export function MobileCart() {
                 />
 
                 <ButtonFreight
+                freightMobile
                   title={'Retirada na loja'}
                   icon={BiStore}
                   showLoadingIcon={false}
@@ -100,11 +100,13 @@ export function MobileCart() {
                 </div>
               </div>
 
-              <div className="pay">
-                <Button title="Ir ao pagamento" />
-              </div>
+             
+              <Button title="Ir ao pagamento"/>
+              <Button onClick={handleBack} title="Voltar"/>
+            
             </div>
-          )}
+          )} 
+          
 
 
 

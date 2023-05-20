@@ -7,7 +7,7 @@ import { ButtonText } from "../ButtonText";
 
 
 
-export function  CartItem({ data,   fetchCartData, ...rest }){
+export function  CartItem({ data,   fetchCartData, cartMobile=false, ...rest }){
   const { price, title, thumbnail } = data.product;
   const [cartItems, setCartItems] = useState(data.quantity);
 
@@ -56,9 +56,8 @@ export function  CartItem({ data,   fetchCartData, ...rest }){
   
 
   return(
-    <Container {...rest}>
-
-         
+    <Container  className={cartMobile ? 'cartMobile' : ''} {...rest}>
+ 
         <img src={thumbnail} />
        
         
@@ -78,11 +77,14 @@ export function  CartItem({ data,   fetchCartData, ...rest }){
         
         <div className="quantity"> 
           <button onClick={decreaseQuantity}>-</button>
+          <div className="inputQuantity">
           <Input 
           quantity
           value={cartItems}
           onChange={(e) => setCartItems(parseInt(e.target.value))}
-        readOnly />
+          readOnly/>
+
+          </div>
           <button onClick={increaseQuantity}>+</button>
         </div>
 
