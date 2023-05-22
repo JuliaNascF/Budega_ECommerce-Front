@@ -86,6 +86,14 @@ export const Content = styled.div`
       font-size:20px;
       color: ${({ theme }) => theme.COLORS.GRAY_900};
     }
+
+  
+    svg{
+      color: ${({ theme }) => theme.COLORS.GRAY_900};
+      position: absolute;
+      top: 5%;
+      left: 80%;
+    }
   }
 
   img{

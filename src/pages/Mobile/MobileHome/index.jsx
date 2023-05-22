@@ -1,14 +1,12 @@
 import { Container, Content, Image, Category } from "./styles";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
-import { Button } from "../../../components/Button";
 import SidebarMobile from "../../../components/SidebarMobile";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
 import { Input } from "../../../components/Input";
 import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
-import { HiOutlineShoppingBag } from "react-icons/hi"; 
 import cart from "../../../assets/cart.svg"
 
 
@@ -17,7 +15,7 @@ import cart from "../../../assets/cart.svg"
   const [isLoading, setIsLoading] = useState(true);
   const [menuIconAnimation, setMenuIconAnimation] = useState('');
   const [sidebar, setSidebar] = useState(false)
-
+  const [search, setSearch] = useState("")
 
 
   useEffect(() => {
@@ -33,6 +31,29 @@ import cart from "../../../assets/cart.svg"
     }
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const resp = await api.get("/products");
+      const allProducts = resp.data;
+
+      const filteredProducts = allProducts.filter((product) => {
+        const lowerCaseSearch = search.toLowerCase();
+        const lowerCaseTitle = product.title.toLowerCase();
+        const lowerCaseCategory = product.category.toLowerCase();
+
+        return (
+          lowerCaseTitle.includes(lowerCaseSearch) ||
+          lowerCaseCategory.includes(lowerCaseSearch)
+        );
+      });
+
+      setProducts(filteredProducts);
+    }
+
+    fetchProducts();
+  }, [search]);
+
   const navigate = useNavigate();
 
   function handleDetails(id) {
@@ -73,6 +94,9 @@ import cart from "../../../assets/cart.svg"
       {sidebar && <SidebarMobile active={setSidebar} />}
 
       <Input icon={FaSearch} placeholder="Pesquisar pelo título"
+      type='search'
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
        />
 
          </header>

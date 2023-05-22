@@ -42,6 +42,9 @@ const toggleMenu = () => {
       <img className="Budega" src={logo} />
 
       <Input icon={FaSearch} placeholder="Pesquisar pelo título"
+        type='search'
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
        />
 
       <p onClick={handleFavorites}>Favoritos</p>

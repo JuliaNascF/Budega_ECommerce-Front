@@ -7,12 +7,14 @@ import { useEffect, useState, useRef } from "react";
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md"
 import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
+import { isNull } from "lodash";
 
 
 
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("")
 
   useEffect(() => {
     async function fetchProducts() {
@@ -23,6 +25,27 @@ function Home() {
     fetchProducts();
   }, []);
    
+  useEffect(() => {
+    async function fetchProducts() {
+      const resp = await api.get("/products");
+      const allProducts = resp.data;
+
+      const filteredProducts = allProducts.filter((product) => {
+        const lowerCaseSearch = search.toLowerCase();
+        const lowerCaseTitle = product.title.toLowerCase();
+        const lowerCaseCategory = product.category.toLowerCase();
+
+        return (
+          lowerCaseTitle.includes(lowerCaseSearch) ||
+          lowerCaseCategory.includes(lowerCaseSearch)
+        );
+      });
+
+      setProducts(filteredProducts);
+    }
+
+    fetchProducts();
+  }, [search]);
 
 
 const sofaProductContainerRef = useRef(null);
@@ -82,7 +105,7 @@ const luminariaProductContainerRef = useRef(null);
 
   return (
     <Container>
-      <Header />
+      <Header value={search} setSearch={setSearch} />
 
 
       <main >
@@ -100,7 +123,8 @@ const luminariaProductContainerRef = useRef(null);
           <div className="HeaderPage" style={{ position: "sticky", top: "0px", zIndex: "999" }}>
             <HeaderPage />
           </div>
-
+          
+   
           <h3>Sofás</h3>
 
           <Category>
@@ -134,6 +158,7 @@ const luminariaProductContainerRef = useRef(null);
 
 
           </Category>
+     
 
 
           <h3>Mesas</h3>
