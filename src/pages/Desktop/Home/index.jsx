@@ -23,12 +23,6 @@ function Home() {
     fetchProducts();
   }, []);
    
-  const navigate = useNavigate();
-
-  function handleDetails(id) {
-    navigate(`/details/${id}`)
-  }
-
 
 
 const sofaProductContainerRef = useRef(null);
@@ -41,22 +35,22 @@ const luminariaProductContainerRef = useRef(null);
   const scrollLeft = (category) => {
     if (category === 'sofa') {
       sofaProductContainerRef.current.scrollBy({
-        left: -180,
+        left: -260,
         behavior: "smooth",
       });
     } else if (category === 'mesa') {
       mesaProductContainerRef.current.scrollBy({
-        left: -180,
+        left: -260,
         behavior: "smooth",
       });
     } else if (category === 'cadeira') {
       cadeiraProductContainerRef.current.scrollBy({
-        left: -180,
+        left: -260,
         behavior: "smooth",
       });
     } else if (category === 'luminaria') {
       luminariaProductContainerRef.current.scrollBy({
-        left: -180,
+        left: -260,
         behavior: "smooth",
       });
     }
@@ -65,22 +59,22 @@ const luminariaProductContainerRef = useRef(null);
   const scrollRight = (category) => {
     if (category === 'sofa') {
       sofaProductContainerRef.current.scrollBy({
-        left: 180,
+        left: 260,
         behavior: "smooth",
       });
     } else if (category === 'mesa') {
       mesaProductContainerRef.current.scrollBy({
-        left: 180,
+        left: 260,
         behavior: "smooth",
       });
     } else if (category === 'cadeira') {
       cadeiraProductContainerRef.current.scrollBy({
-        left: 180,
+        left: 260,
         behavior: "smooth",
       });
     } else if (category === 'luminaria') {
       luminariaProductContainerRef.current.scrollBy({
-        left: 180,
+        left: 260,
         behavior: "smooth",
       });
     }
@@ -129,7 +123,6 @@ const luminariaProductContainerRef = useRef(null);
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -165,7 +158,6 @@ const luminariaProductContainerRef = useRef(null);
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -200,7 +192,6 @@ const luminariaProductContainerRef = useRef(null);
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -236,7 +227,6 @@ const luminariaProductContainerRef = useRef(null);
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>

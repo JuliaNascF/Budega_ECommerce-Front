@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components'
-import px2vw from "../../utils/px2vw";
+
 
 
 const spin = keyframes`
@@ -22,12 +22,12 @@ export const Container = styled.button`
   color: ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
   border: 2px solid #158A8A;
   
-  height: 70px;
+  height: 95px;
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
 
 
   > svg {
@@ -44,6 +44,7 @@ export const Container = styled.button`
   
     font-size:14px;
     text-align:left;
+    margin-bottom:20px;
   }
 
 
@@ -67,6 +68,10 @@ export const Container = styled.button`
         font-size: 12px;
       
     }
+  }
+
+  p{
+    margin-bottom:0;
   }
 
   p1{

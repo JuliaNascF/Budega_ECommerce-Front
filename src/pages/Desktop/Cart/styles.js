@@ -131,6 +131,7 @@ export const Content = styled.div`
     }
 
     h2{
+      margin-top:20px;
       font-size: 22px;
       color:${({ theme }) => theme.COLORS.GRAY_900};
     }

@@ -110,6 +110,10 @@ export const Category = styled.div`
      
   }
   }
+   
+  button{
+    color:${({ theme }) => theme.COLORS.BLUE_GREEN_800}
+  }
 `;
 
 

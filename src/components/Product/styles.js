@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+ position:relative;
  cursor: pointer;
   width: 270px;
-  height:  300px;
+  height:  290px;
   display: flex;
   flex-direction: column;
-  align-items:center;
+
   margin-bottom: 24px;
   padding: 32px;
   border-radius: 16px;
@@ -19,21 +20,42 @@ export const Container = styled.div`
 
   
     img{
-    width: 160px;
+    width: 180px;
+    
    }
   
-    
+   .stars{
+    svg {
+    color: rgba(255, 214, 70, 1);
+    font-size: 10px;
+  }
+  }
+
+    .productDetails{
+      position: absolute;
+      top: 55%;
+      
+    }
 
     h1{
-    margin-bottom: 8px;
+ 
     color: ${({ theme }) => theme.COLORS.BLACK};
-    font-size: 12px;
+    font-size: 20px;
    
   }
    p {
-    
-    margin-top: 15px;
-    margin-bottom: 15px;
+    font-size:18px;
     color: ${({ theme }) => theme.COLORS.BLACK}
+  }
+
+  p1{
+    font-size: 12px;
+  }
+
+  .heart{
+    position: absolute;
+    bottom: 0;
+    right: 10%;
+
   }
 `;
