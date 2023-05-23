@@ -42,6 +42,10 @@ export function Cart() {
     navigate("/");
   }
    
+  function handlePay() {
+    navigate("/payment");
+  }
+   
  
   function handleButtonClick(button) {
     if (activeButton !== button) {
@@ -120,7 +124,7 @@ export function Cart() {
               </div>
 
               <div className="pay">
-                <Button title="Ir ao pagamento" />
+                <Button onClick={handlePay} title="Ir ao pagamento" />
               </div>
             </div>
           )}

@@ -6,6 +6,12 @@ import { SignIn } from '../pages/Desktop/SignIn';
 import { SignUp } from '../pages/Desktop/SignUp';
 import { Cart } from '../pages/Desktop/Cart';
 import { Favorites } from '../pages/Desktop/Favorites';
+import { Payment } from '../pages/Desktop/Payment';
+import { Boleto } from '../pages/Desktop/Boleto';
+import { Pix } from '../pages/Desktop/Pix';
+import { Card} from '../pages/Desktop/Card';
+import { QRCode } from '../pages/Desktop/QRCode';
+
 
 import { MobileSplash } from '../pages/Mobile/MobileSplash';
 import { MobileHome } from '../pages/Mobile/MobileHome';
@@ -41,6 +47,11 @@ export  function AppRoutes(){
           <Route path="/register" element={<SignUp />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/boleto" element={<Boleto/>} />
+          <Route path="/pix" element={<Pix />} />
+          <Route path="/qrcode" element={<QRCode />} />
+          <Route path="/card" element={< Card/>} />
         </>
       )}
     </Routes>

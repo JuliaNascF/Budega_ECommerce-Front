@@ -29,6 +29,12 @@ export function Details() {
     navigate("/");
   }
 
+     
+  function handlePay() {
+    navigate("/payment");
+  }
+   
+
   useEffect(() => {
     async function fetchProduct() {
       const response = await api.get(`/products/id/${params.id}`);
@@ -94,10 +100,8 @@ export function Details() {
         alert("Erro ao remover produto dos favoritos!");
       }
     } else {
-      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
-      alert("Você precisa estar logado para remover produtos dos favoritos!");
-      // ou redirecione o usuário para a página de login:
-      // history.push('/login');
+    alert("Você precisa estar logado para remover produtos dos favoritos!");
+    
       navigate("/signin");
     }
   }
@@ -130,10 +134,27 @@ export function Details() {
         alert("Erro ao adicionar produto ao carrinho!");
       }
     } else {
-      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
+    
       alert("Você precisa estar logado para adicionar produtos ao carrinho!");
-      // ou redirecione o usuário para a página de login:
-      // history.push('/login');
+      navigate("/signin")
+    }
+  }
+  
+
+
+  async function AddToCartPay() {
+ 
+    
+    if (user && user._id) {
+      try {
+        const response = await api.post(`/cart/${currentProductId}`);
+        navigate("/cart")
+      } catch (error) {
+        alert("Erro ao comoprar produto ao carrinho!");
+      }
+    } else {
+    
+      alert("Você precisa estar logado para comprar produtos!");
       navigate("/signin")
     }
   }
@@ -194,7 +215,7 @@ export function Details() {
               </p>
 
               <div className="buttons">
-                <Button title="Comprar" />
+                <Button onClick={AddToCartPay} title="Comprar" />
                 <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
               </div>
 
