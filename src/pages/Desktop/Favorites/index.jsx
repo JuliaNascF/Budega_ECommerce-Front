@@ -44,7 +44,9 @@ export function Favorites() {
 
   async function removeFromFavorites(id) {
     if (user && user._id) {
-    
+      const updatedFavorites = favorites.filter(favorite => favorite._id !== id);
+      setFavorites(updatedFavorites);
+
       try {
         const response = await api.delete(`/favorites/${id}`);
         fetchFavorites();

@@ -76,7 +76,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
     <Container {...rest}>
 
          
-        <img src={data.thumbnail} />
+        <img  onClick={() => handleDetails(data._id)} src={data.thumbnail} />
       <div className="productDetails">
       <h1  onClick={() => handleDetails(data._id)}>{data.title} </h1>
       <div  onClick={() => handleDetails(data._id)} className="stars">

@@ -3,24 +3,29 @@ import { FaSpinner } from "react-icons/fa";
 import { useState } from "react";
 
 
-export function ButtonFreight({title, price, loading= false, showLoadingIcon = true, icon: Icon, deliveryTime, freightMobile=false,  ...rest}){
-    const [isLoading, setIsLoading] = useState(loading);
+export function ButtonFreight({title,disabled, price, loading= false, showLoadingIcon = true, icon: Icon, deliveryTime, freightMobile=false, isActive,onClick,  ...rest}){
+  const [isLoading, setIsLoading] = useState(loading);
 
+  const handleClick = () => {
+    if (!isActive) {
+      setIsLoading(true);
 
-    const handleClick = () => {
-        setIsLoading(true);
-         
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      };
-    
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+
+      onClick(); // Chama a função onClick passada como propriedade
+    }
+  };
+
 
 return(
-<Container  type="button"
-    disabled={isLoading}
-    className={freightMobile ? 'freightMobile ' : ''}
-    {...rest} onClick={handleClick}>
+<Container   type="button"
+      disabled={disabled || isActive} // Desabilita o botão se estiver desativado ou já estiver ativo
+      className={`${freightMobile ? "freightMobile" : ""} ${isActive ? "clicked" : ""}`}
+      {...rest}
+      onClick={handleClick}
+    >
     {Icon && <Icon size={45} />}
 
     <div className="title">
@@ -31,7 +36,7 @@ return(
     </div>
      
     <p1>
-        {isLoading && showLoadingIcon ? (
+    {isLoading && showLoadingIcon && isActive  ? (
           <FaSpinner size={25} className="loading-spinner" />
         ) : (
           "Grátis"

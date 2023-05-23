@@ -18,6 +18,7 @@ export const Container = styled.div`
     svg{
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     }
+    color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     margin-left: 30px;
     margin-top: 30px;
   }
@@ -59,6 +60,14 @@ export const Content = styled.div`
       top: 100%;
       font-size:20px;
       color: ${({ theme }) => theme.COLORS.GRAY_900};
+    }
+
+
+    button{
+      color: ${({ theme }) => theme.COLORS.GRAY_900};
+      position: absolute;
+      right:10%;
+      top:8%;
     }
   }
 

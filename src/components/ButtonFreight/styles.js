@@ -51,6 +51,8 @@ export const Container = styled.button`
 
 
   .loading-spinner {
+    margin-right: 50px;
+    margin-bottom: 25px;
   animation:${spin} 1s linear infinite;
 }
 
@@ -80,5 +82,24 @@ export const Container = styled.button`
   }
 }
 
+&.clicked{
+  background-color:  ${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+  color: ${({ theme }) => theme.COLORS.WHITE};
+  .title{
+  
+    >:nth-child(1){
+      color: ${({ theme }) => theme.COLORS.WHITE};
+    }
+
+    >:nth-child(2){
+      color: ${({ theme }) => theme.COLORS.WHITE};
+      
+    }
+  }
+
+  svg{
+    color: ${({ theme }) => theme.COLORS.WHITE};
+  }
+}
 
  `

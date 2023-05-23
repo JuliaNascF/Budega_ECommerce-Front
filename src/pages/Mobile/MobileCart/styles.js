@@ -14,12 +14,22 @@ const spin = keyframes`
 
 export const Container = styled.div`
  width: 100%;
+
  
 .cart{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 20px;
+  svg{
+    color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+  }
   >h1{
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
       font-size:25px;
-      margin: 30px;
+      margin-bottom: 30px;
+      margin-top:5px;
+     
     
     }
 }

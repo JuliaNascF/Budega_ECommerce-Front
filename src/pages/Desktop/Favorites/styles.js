@@ -88,11 +88,12 @@ export const Content = styled.div`
     }
 
   
-    svg{
+   
+    button{
       color: ${({ theme }) => theme.COLORS.GRAY_900};
       position: absolute;
-      top: 5%;
-      left: 80%;
+      right:5%;
+      top:8%;
     }
   }
 

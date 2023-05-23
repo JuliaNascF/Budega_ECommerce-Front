@@ -104,7 +104,8 @@ img{
 
 .backLogin{
     margin-top: 20px;
- 
+    font-size: 14px;
+    color: ${({ theme }) => theme.COLORS.WHITE};
 }
 
 

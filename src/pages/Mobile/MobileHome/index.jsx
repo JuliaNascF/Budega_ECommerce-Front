@@ -56,9 +56,7 @@ import cart from "../../../assets/cart.svg"
 
   const navigate = useNavigate();
 
-  function handleDetails(id) {
-    navigate(`/details/${id}`)
-  }
+ 
 
   function handleCart() {
     navigate(`/cart`)
@@ -133,7 +131,6 @@ import cart from "../../../assets/cart.svg"
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -163,7 +160,6 @@ import cart from "../../../assets/cart.svg"
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -191,7 +187,6 @@ import cart from "../../../assets/cart.svg"
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>
@@ -220,7 +215,6 @@ import cart from "../../../assets/cart.svg"
                     category={product.category}
                     price={product.price}
                     data={product}
-                    onClick={() => handleDetails(product._id)}
                   />
                 ))}
             </div>

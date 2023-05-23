@@ -111,16 +111,7 @@ export const Content = styled.div`
     display: flex;
     gap: 20px;
 
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-       
-      }
-     :hover{
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};
-       
-      }
-     }
+   
      
     }
 

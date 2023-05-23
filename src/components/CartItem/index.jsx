@@ -7,7 +7,7 @@ import { ButtonText } from "../ButtonText";
 
 
 
-export function  CartItem({ data,   fetchCartData, cartMobile=false, ...rest }){
+export function  CartItem({ data, fetchCartData, cartMobile=false, ...rest }){
   const { price, title, thumbnail } = data.product;
   const [cartItems, setCartItems] = useState(data.quantity);
 
@@ -44,16 +44,16 @@ export function  CartItem({ data,   fetchCartData, cartMobile=false, ...rest }){
   }
 
   async function removeProduct() {
+   
     try {
       await api.delete(`/cart/${data.productId}`);
-      fetchCartData()
+      fetchCartData();
     } catch (error) {
-    
       console.log(error);
-   
     }
   }
   
+ 
 
   return(
     <Container  className={cartMobile ? 'cartMobile' : ''} {...rest}>
@@ -89,7 +89,7 @@ export function  CartItem({ data,   fetchCartData, cartMobile=false, ...rest }){
         </div>
 
        <div className="remove">
-      <ButtonText onClick={removeProduct} icon={BiX}/>
+      <ButtonText onClick={removeProduct}  icon={BiX}/>
 
        </div>
     </Container>

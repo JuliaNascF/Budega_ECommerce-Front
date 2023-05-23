@@ -17,8 +17,9 @@ export function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeButton, setActiveButton] = useState(null);
 
-
+ 
   useEffect(() => {
     fetchCartData();
   }, [totalPrice]);
@@ -40,8 +41,18 @@ export function Cart() {
   function handleBack() {
     navigate("/");
   }
-
-
+   
+ 
+  function handleButtonClick(button) {
+    if (activeButton !== button) {
+      setActiveButton(button); // Ativa o botão clicado
+  
+      // Desativa o outro botão, se houver
+      const otherButton = button === 'home' ? 'store' : 'home';
+      setActiveButton((prevButton) => (prevButton === otherButton ? null : prevButton));
+    }
+  }
+  
   return (
     <Container>
       <Header />
@@ -56,7 +67,7 @@ export function Cart() {
             cartItems.map(item => (
               <CartItem key={item.productId}
                 data={item}
-                fetchCartData={fetchCartData}
+                fetchCartData={fetchCartData}  
               />
             ))
           ) : (
@@ -74,6 +85,11 @@ export function Cart() {
                   icon={BiHome}
                   showLoadingIcon={true}
                   deliveryTime={'23 dias úteis'}
+                  isActive={activeButton === 'home'}
+                  onClick={() => handleButtonClick('home')}
+                 
+                 
+                
                 />
 
                 <ButtonFreight
@@ -81,6 +97,9 @@ export function Cart() {
                   icon={BiStore}
                   showLoadingIcon={false}
                   deliveryTime={'2 horas apos confirmação de pagamento'}
+                  isActive={activeButton === 'store'}
+                  onClick={() => handleButtonClick('store')}
+                 
                 />
               </div>
 

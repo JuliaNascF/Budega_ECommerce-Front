@@ -29,12 +29,6 @@ export function Details() {
     navigate("/");
   }
 
-  function handleDetails(id) {
-    setCurrentProductId(id);
-    navigate(`/details/${id}`)
-  }
-
-
   useEffect(() => {
     async function fetchProduct() {
       const response = await api.get(`/products/id/${params.id}`);
@@ -49,10 +43,10 @@ export function Details() {
 
   useEffect(() => {
     async function fetchRelatedProducts() {
-      const response = await api.get(`/products/${category}`); // Busca produtos relacionados usando a categoria do produto atual
+      const response = await api.get(`/products/${category}`); 
 
       const products = response.data;
-      const related = sampleSize(products, 5);
+      const related = sampleSize(products, 4);
       setRelatedProducts(related);
     }
 
@@ -201,7 +195,7 @@ export function Details() {
 
               <div className="buttons">
                 <Button title="Comprar" />
-                <Button title="Adicionar ao carrinho" cart onClick={ AddToCart} />
+                <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
               </div>
 
             </div>
@@ -217,7 +211,6 @@ export function Details() {
               category={product.category}
               price={product.price}
               data={product}
-              onClick={() => handleDetails(product._id)}
             />
           ))}
           </div>

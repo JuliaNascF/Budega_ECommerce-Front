@@ -1,12 +1,14 @@
 
 import { Container, Content } from "./styles"
 import { Input } from "../../../components/Input";
-import { Button } from '../../../components/Button'
+import { Button } from '../../../components/Button';
+import { ButtonText } from "../../../components/ButtonText";
 import { CartItem } from "../../../components/CartItem";
 import { ButtonFreight } from "../../../components/ButtonFreight";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { BiHome, BiStore } from 'react-icons/bi'
+import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
@@ -42,7 +44,9 @@ export function MobileCart() {
   return (
     <Container>
       <main>
+      
             <div className="cart">
+            <ButtonText onClick={handleBack} icon={FiArrowLeft} />
             <h1>Carrinho de compras</h1>
             </div>
          
@@ -102,8 +106,7 @@ export function MobileCart() {
 
              
               <Button title="Ir ao pagamento"/>
-              <Button onClick={handleBack} title="Voltar"/>
-            
+           
             </div>
           )} 
           
