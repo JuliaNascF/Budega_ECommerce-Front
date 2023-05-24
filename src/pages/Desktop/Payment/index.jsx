@@ -1,9 +1,8 @@
 
 import { Container, Content } from "./styles";
 import { Header } from '../../../components/Header';
-import { useAuth } from "../../../hooks/auth";
-import { FaSpinner } from "react-icons/fa";
 import { ButtonText } from "../../../components/ButtonText";
+import { Information} from "../../../components/Information";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -16,6 +15,16 @@ import methodQRCode from "../../../assets/qrCode.svg";
 
 
 export function Payment() {
+  const [showCard, setShowCard] = useState(false);
+
+  function handleShowCard() {
+    setShowCard(true);
+  }
+  
+  function handleCloseCard() {
+    setShowCard(false);
+  }
+ 
 
   const navigate = useNavigate();
 
@@ -58,9 +67,12 @@ export function Payment() {
             <img onClick={handlePix} src={methodPix} alt="" />
           </div>
 
-          <p>Em caso de dúvida clique <span>aqui</span> </p>
+          <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>
+            </p>
 
         </Content>
+         {showCard && <Information onClose={handleCloseCard} />}
+
       </main>
     </Container>
   );
