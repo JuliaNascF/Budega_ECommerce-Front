@@ -1,6 +1,7 @@
 
 import { Container, Content } from "./styles";
 import { ButtonText } from "../../../components/ButtonText";
+import { Information} from "../../../components/Information";
 import { Button } from "../../../components/Button";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
@@ -9,6 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 
 export function MobilePix() {
+  const [showCard, setShowCard] = useState(false);
+
+  function handleShowCard() {
+    setShowCard(true);
+  }
+  
+  function handleCloseCard() {
+    setShowCard(false);
+  }
 
   const navigate = useNavigate();
 
@@ -34,10 +44,12 @@ export function MobilePix() {
             <h3>67.801.575/0001-84  <span>Tipo CNPJ</span></h3>
            
              <Button title="Copiar chave"/>
-
-          <p>Em caso de dúvida clique <span>aqui</span> </p>
+             <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>
+            </p>
 
         </Content>
+         {showCard && <Information Mobile onClose={handleCloseCard} />}
+
       </main>
     </Container>
   );

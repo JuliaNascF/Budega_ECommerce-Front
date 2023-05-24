@@ -1,10 +1,9 @@
 
 import { Container, Content } from "./styles";
 import { Header } from '../../../components/Header';
-import { useAuth } from "../../../hooks/auth";
-import { FaSpinner } from "react-icons/fa";
 import { ButtonText } from "../../../components/ButtonText";
 import { Information} from "../../../components/Information";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -14,6 +13,20 @@ import creditCard from "../../../assets/creditCard.svg";
 
 export function Card() {
   const [showCard, setShowCard] = useState(false);
+  const location = useLocation();
+  const { cartItems, deliveryMethod, totalPrice } = location.state;
+
+  function handleConfirm() {
+    navigate("/confirm", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+        paymentMethod: "Cartão"
+      }
+    });
+  }
+ 
 
   function handleShowCard() {
     setShowCard(true);
@@ -31,7 +44,7 @@ export function Card() {
       navigate(-1);
     }
   
-   
+ 
   
     return (
       <Container>
@@ -45,7 +58,7 @@ export function Card() {
             <h2>Cartão</h2> 
             <p>Você possui um cartão cadastrado! Para realizar a compra basta clicar no cartão.</p>
            
-             <img src={creditCard} alt="" />
+             <img onClick={handleConfirm} src={creditCard} alt="" />
 
   
              <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>

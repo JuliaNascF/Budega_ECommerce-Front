@@ -13,16 +13,19 @@ import { FiArrowLeft } from 'react-icons/fi'
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
+
+
 export function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeButton, setActiveButton] = useState(null);
 
- 
+
   useEffect(() => {
     fetchCartData();
   }, [totalPrice]);
+
 
   async function fetchCartData() {
     try {
@@ -41,10 +44,17 @@ export function Cart() {
   function handleBack() {
     navigate(-1);
   }
-   
+
   function handlePay() {
-    navigate("/payment");
+    navigate("/payment", {
+      state: {
+        cartItems,
+        deliveryMethod: activeButton === "home" ? "Receber em casa" : "Retirada na loja",
+        totalPrice,
+      }
+    });
   }
+  
    
  
   function handleButtonClick(button) {
@@ -71,6 +81,8 @@ export function Cart() {
             cartItems.map(item => (
               <CartItem key={item.productId}
                 data={item}
+              
+                
                 fetchCartData={fetchCartData}  
               />
             ))

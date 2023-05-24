@@ -30,6 +30,14 @@ export const Container = styled.div`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 999;
   animation: ${props => (props.isVisible ? fadeIn : fadeOut)} 0.3s ease-in-out;
+
+  &.Mobile{
+    width: 300px;
+    height: 300px;
+    position: fixed;
+  top: 80%;
+  left: 50%;
+  }
 `;
 
 export const CardContent = styled.div`

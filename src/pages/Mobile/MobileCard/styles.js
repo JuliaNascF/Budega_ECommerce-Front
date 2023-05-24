@@ -33,6 +33,7 @@ export const Content = styled.div`
   margin: 30px;
 
   h2{
+    margin-top:40px;
     font-size:25px;
   }
 

@@ -7,15 +7,24 @@ import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
-import creditCard from "../../../assets/creditCard.svg";
+import { useLocation } from "react-router-dom";
 import methodCard from "../../../assets/card.svg";
 import methodPix from "../../../assets/pix.svg";
 import methodBoleto from "../../../assets/boleto.svg";
 import methodQRCode from "../../../assets/qrCode.svg";
 
 
+
 export function Payment() {
   const [showCard, setShowCard] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const location = useLocation();
+  const { cartItems, deliveryMethod, totalPrice } = location.state;
+ 
+
+  function handlePaymentMethod(method) {
+    setSelectedPaymentMethod(method);
+  }
 
   function handleShowCard() {
     setShowCard(true);
@@ -33,21 +42,45 @@ export function Payment() {
   }
 
   function handleBoleto() {
-    navigate("/boleto");
+    navigate("/boleto", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
   function handleCard() {
-    navigate("/card");
+    navigate("/card", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
+
   function handlePix() {
-    navigate("/pix");
+    navigate("/pix", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
   function handleQRCode() {
-    navigate("/qrcode");
+    navigate("/qrcode", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
-
 
 
   return (
@@ -57,7 +90,9 @@ export function Payment() {
         <div className="back">
           <ButtonText onClick={handleBack} icon={FiArrowLeft}  />
         </div>
-        <Content>
+        <Content> 
+      
+  
          <h2>Selecione o método de pagamento </h2>
           
           <div className="paymentMethod">

@@ -8,10 +8,13 @@ import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 export function Pix() {
   const [showCard, setShowCard] = useState(false);
+  const location = useLocation();
+  const { cartItems, deliveryMethod, totalPrice } = location.state;
 
   function handleShowCard() {
     setShowCard(true);
@@ -27,6 +30,16 @@ export function Pix() {
     navigate(-1);
   }
 
+  function handleConfirm() {
+    navigate("/confirm", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+        paymentMethod: "Pix"
+      }
+    });
+  }
  
 
   return (
@@ -43,7 +56,7 @@ export function Pix() {
          
             <h3>67.801.575/0001-84  <span>Tipo CNPJ</span></h3>
            
-             <Button title="Copiar chave"/>
+             <Button onClick={handleConfirm} title="Efetuar pagamento"/>
 
              <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>
             </p>

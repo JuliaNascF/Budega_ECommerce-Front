@@ -11,6 +11,7 @@ import { Boleto } from '../pages/Desktop/Boleto';
 import { Pix } from '../pages/Desktop/Pix';
 import { Card} from '../pages/Desktop/Card';
 import { QRCode } from '../pages/Desktop/QRCode';
+import { Confirm } from '../pages/Desktop/Confirm';
 
 
 import { MobileSplash } from '../pages/Mobile/MobileSplash';
@@ -62,6 +63,8 @@ export  function AppRoutes(){
           <Route path="/pix" element={<Pix />} />
           <Route path="/qrcode" element={<QRCode />} />
           <Route path="/card" element={< Card/>} />
+          <Route path="/confirm" element={< Confirm/>} />
+
         </>
       )}
     </Routes>

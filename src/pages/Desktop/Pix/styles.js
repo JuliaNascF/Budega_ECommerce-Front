@@ -66,10 +66,6 @@ export const Content = styled.div`
   }
  }
 
-  @media(max-width:1130px){
-  max-width: 800px;
-  margin: 0 auto;
-  }
 
 button{
   width: 400px;

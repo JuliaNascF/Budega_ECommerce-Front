@@ -146,6 +146,23 @@ export function MobileDetails() {
   }
 
 
+  async function AddToCartPay() {
+ 
+    
+    if (user && user._id) {
+      try {
+        const response = await api.post(`/cart/${currentProductId}`);
+        navigate("/cart")
+      } catch (error) {
+        alert("Erro ao comoprar produto ao carrinho!");
+      }
+    } else {
+    
+      alert("Você precisa estar logado para comprar produtos!");
+      navigate("/signin")
+    }
+  }
+
   return (
     <Container>
 
@@ -200,7 +217,7 @@ export function MobileDetails() {
             <p>10x de R$ 250 sem juros</p>
 
             <div className="buttons">
-              <Button title="Comprar" />
+              <Button title="Comprar" onClick={AddToCartPay} />
               <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
             </div>
 

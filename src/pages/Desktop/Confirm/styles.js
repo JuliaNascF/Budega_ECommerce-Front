@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components'
 
 
 
-
 export const Container = styled.div`
  width: 100%;
   height: 100vh;
@@ -18,14 +17,11 @@ export const Container = styled.div`
     overflow-y: auto;
   
   .back{
-   
-    margin-left: 150px;
-    margin-top: 30px;
     svg{
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     }
-
-
+    margin-left: 150px;
+    margin-top: 30px;
   }
 }
 
@@ -40,28 +36,22 @@ export const Content = styled.div`
   align-items: center;
  flex-direction:column;
   gap: 20px;
-
-  h2{
-    font-size:25px;
+ 
+ .paymentMethod{
+  display: flex;
+  flex-wrap:wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 40%;
+  img{
+    cursor: pointer;
+    width: 200px;
   }
-
-  h3{
-    margin-top:50px;
-    display: flex;
-    flex-direction: column;
-    color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-    font-size:25px;
-    text-align:center;
-    span{
-      color:${({ theme }) => theme.COLORS.GRAY_700};
-      font-size:12px;
-    }
-  }
-
+ }
 
  p{
   color:${({ theme }) => theme.COLORS.GRAY_900};
-  font-size: 16px;
+  font-size: 20px;
 
   span{
     cursor:pointer;
@@ -69,19 +59,13 @@ export const Content = styled.div`
   }
  }
 
- svg{
-  font-size: 200px;
-  margin-bottom:20px;
- }
-
   @media(max-width:1130px){
   max-width: 800px;
   margin: 0 auto;
   }
 
-  button{
-  width: 400px;
-}
+ 
+   
 `;
 
 
