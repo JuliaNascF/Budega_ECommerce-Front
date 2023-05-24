@@ -34,7 +34,7 @@ export function Favorites() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate(-1);
   }
 
   function handleDetails(id) {

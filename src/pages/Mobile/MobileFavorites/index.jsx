@@ -33,7 +33,7 @@ export function MobileFavorites() {
   const { user } = useAuth();
 
   function handleBack() {
-    navigate("/home");
+    navigate(-1);
   }
 
   function handleDetails(id) {

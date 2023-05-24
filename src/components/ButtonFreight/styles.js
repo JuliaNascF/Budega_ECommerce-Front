@@ -57,6 +57,12 @@ export const Container = styled.button`
 }
 
 &.freightMobile{
+  .loading-spinner {
+    margin-right: 40px;
+    margin-bottom: 20px;
+  animation:${spin} 1s linear infinite;
+}
+
  
   height: 70px;
   .title{

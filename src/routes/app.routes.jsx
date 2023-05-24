@@ -20,6 +20,11 @@ import { MobileSignIn } from '../pages/Mobile/MobileSignIn';
 import { MobileSignUp } from '../pages/Mobile/MobileSignUp';
 import { MobileCart } from '../pages/Mobile/MobileCart';
 import { MobileFavorites } from '../pages/Mobile/MobileFavorites';
+import { MobilePayment } from '../pages/Mobile/MobilePayment';
+import { MobilePix } from '../pages/Mobile/MobilePix';
+import { MobileBoleto } from '../pages/Mobile/MobileBoleto';
+import { MobileCard} from '../pages/Mobile/MobileCard';
+import { MobileQRCode } from '../pages/Mobile/MobileQRCode';
 
 
 export  function AppRoutes(){
@@ -38,6 +43,11 @@ export  function AppRoutes(){
           <Route path="/register" element={<MobileSignUp />} />
           <Route path="/cart" element={<MobileCart />} />
           <Route path="/favorites" element={<MobileFavorites />} />
+          <Route path="/card" element={<MobileCard />} />
+          <Route path="/payment" element={<MobilePayment />} />
+          <Route path="/boleto" element={<MobileBoleto/>} />
+          <Route path="/pix" element={<MobilePix />} />
+          <Route path="/qrcode" element={<MobileQRCode/>} />
         </>
       ) : (
         <>

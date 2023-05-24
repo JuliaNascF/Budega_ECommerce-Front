@@ -102,12 +102,7 @@ export const Content = styled.div`
    
     display: flex; 
    flex-direction: column;
-   
-
-      svg{
-        color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-   
-    }
+  
   }
     h1{
       font-size: 25px;

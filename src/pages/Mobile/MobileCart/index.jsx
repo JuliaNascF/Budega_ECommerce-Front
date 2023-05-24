@@ -16,6 +16,8 @@ export function MobileCart() {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeButton, setActiveButton] = useState(null);
+
 
 
   useEffect(() => {
@@ -37,9 +39,21 @@ export function MobileCart() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/home");
+    navigate(-1);
   }
 
+  function handlePayment() {
+    navigate("/payment");
+  }
+
+  function handleButtonClick(button) {
+    if (activeButton !== button) {
+      setActiveButton(button); 
+  
+      const otherButton = button === 'home' ? 'store' : 'home';
+      setActiveButton((prevButton) => (prevButton === otherButton ? null : prevButton));
+    }
+  }
 
   return (
     <Container>
@@ -77,6 +91,8 @@ export function MobileCart() {
                   icon={BiHome}
                   showLoadingIcon={true}
                   deliveryTime={'23 dias úteis'}
+                  isActive={activeButton === 'home'}
+                  onClick={() => handleButtonClick('home')}
                 />
 
                 <ButtonFreight
@@ -85,6 +101,8 @@ export function MobileCart() {
                   icon={BiStore}
                   showLoadingIcon={false}
                   deliveryTime={'2 horas apos confirmação de pagamento'}
+                  isActive={activeButton === 'store'}
+                  onClick={() => handleButtonClick('store')}
                 />
               </div>
 
@@ -105,7 +123,7 @@ export function MobileCart() {
               </div>
 
              
-              <Button title="Ir ao pagamento"/>
+              <Button onClick={handlePayment} title="Ir ao pagamento"/>
            
             </div>
           )} 

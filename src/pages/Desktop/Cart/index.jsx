@@ -39,7 +39,7 @@ export function Cart() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate(-1);
   }
    
   function handlePay() {
