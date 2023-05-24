@@ -42,8 +42,14 @@ export function MobileCart() {
     navigate(-1);
   }
 
-  function handlePayment() {
-    navigate("/payment");
+  function handlePay() {
+    navigate("/payment", {
+      state: {
+        cartItems,
+        deliveryMethod: activeButton === "home" ? "Receber em casa" : "Retirada na loja",
+        totalPrice,
+      }
+    });
   }
 
   function handleButtonClick(button) {
@@ -123,7 +129,7 @@ export function MobileCart() {
               </div>
 
              
-              <Button onClick={handlePayment} title="Ir ao pagamento"/>
+              <Button onClick={handlePay} title="Ir ao pagamento"/>
            
             </div>
           )} 

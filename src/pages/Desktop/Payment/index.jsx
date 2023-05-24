@@ -17,14 +17,10 @@ import methodQRCode from "../../../assets/qrCode.svg";
 
 export function Payment() {
   const [showCard, setShowCard] = useState(false);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const location = useLocation();
   const { cartItems, deliveryMethod, totalPrice } = location.state;
  
 
-  function handlePaymentMethod(method) {
-    setSelectedPaymentMethod(method);
-  }
 
   function handleShowCard() {
     setShowCard(true);

@@ -12,6 +12,7 @@ import { Pix } from '../pages/Desktop/Pix';
 import { Card} from '../pages/Desktop/Card';
 import { QRCode } from '../pages/Desktop/QRCode';
 import { Confirm } from '../pages/Desktop/Confirm';
+import { Order } from '../pages/Desktop/Order'; 
 
 
 import { MobileSplash } from '../pages/Mobile/MobileSplash';
@@ -26,6 +27,7 @@ import { MobilePix } from '../pages/Mobile/MobilePix';
 import { MobileBoleto } from '../pages/Mobile/MobileBoleto';
 import { MobileCard} from '../pages/Mobile/MobileCard';
 import { MobileQRCode } from '../pages/Mobile/MobileQRCode';
+import { MobileConfirm } from '../pages/Mobile/MobileConfirm';
 
 
 export  function AppRoutes(){
@@ -49,6 +51,8 @@ export  function AppRoutes(){
           <Route path="/boleto" element={<MobileBoleto/>} />
           <Route path="/pix" element={<MobilePix />} />
           <Route path="/qrcode" element={<MobileQRCode/>} />
+          <Route path="/confirm" element={<MobileConfirm/>} />
+       
         </>
       ) : (
         <>
@@ -64,6 +68,7 @@ export  function AppRoutes(){
           <Route path="/qrcode" element={<QRCode />} />
           <Route path="/card" element={< Card/>} />
           <Route path="/confirm" element={< Confirm/>} />
+          <Route path="/order" element={<Order/>} />
 
         </>
       )}

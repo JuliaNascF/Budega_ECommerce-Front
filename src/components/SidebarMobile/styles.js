@@ -5,7 +5,7 @@ export const Container = styled.div`
   border-radius: 5px;
   z-index: 1000;
   position: fixed;
-  height: 45%;
+  height: 60%;
   top: 70px;
   width: 300px;
   left: ${props => props.sidebar ? '0' : '-100%'};

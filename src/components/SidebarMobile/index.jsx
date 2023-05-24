@@ -18,13 +18,18 @@ const SidebarMobile = ({sidebar, active }) => {
         navigate("/favorites")
      }
 
+     function handleOrder(){
+      navigate("/order")
+   }
+   
+
   return (
     <Container sidebar={active}>
     
       <Content>
       <Button icon={ FaHeart} onClick={handleFavorites} title="Favoritos" />
+      <Button icon={HiOutlineShoppingBag} onClick={handleOrder} title="Compras" />
       <Button icon={ FaSignOutAlt} onClick={handleSignOut} title="SignOut" />
-      <Button icon={HiOutlineShoppingBag}  title="Compras" />
   
      
       </Content>

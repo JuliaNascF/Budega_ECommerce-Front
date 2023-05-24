@@ -16,12 +16,17 @@ const Sidebar = ({sidebar, active }) => {
          signOut();
       }
 
+      function handleOrder(){
+        navigate("/order")
+     }
+     
+
   return (
     <Container sidebar={active}>
     
       <Content>
         <Button icon={ FaSignOutAlt} onClick={handleSignOut} title="SignOut" />
-        <Button icon={HiOutlineShoppingBag}  title="Compras" />
+        <Button icon={HiOutlineShoppingBag} onClick={handleOrder}  title="Compras" />
 
      
       </Content>

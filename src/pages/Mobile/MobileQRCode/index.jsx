@@ -2,8 +2,9 @@
 import { Container, Content } from "./styles";
 import { ButtonText } from "../../../components/ButtonText";
 import { Information} from "../../../components/Information";
+import { Button } from "../../../components/Button";
 import { useState, useEffect } from 'react';
-import { api } from '../../../services/api';
+import { useLocation } from "react-router-dom";
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { BsQrCode}  from "react-icons/bs"
@@ -11,6 +12,19 @@ import { BsQrCode}  from "react-icons/bs"
 
 export function MobileQRCode() {
   const [showCard, setShowCard] = useState(false);
+  const location = useLocation();
+  const { cartItems, deliveryMethod, totalPrice } = location.state;
+
+  function handleConfirm() {
+    navigate("/confirm", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+        paymentMethod: "QRCode"
+      }
+    });
+  }
 
   function handleShowCard() {
     setShowCard(true);
@@ -43,6 +57,8 @@ export function MobileQRCode() {
           
             <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>
             </p>
+
+            <Button onClick={handleConfirm} title="Efetuar pagamento"/>
 
         </Content>
          {showCard && <Information Mobile onClose={handleCloseCard} />}

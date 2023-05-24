@@ -4,8 +4,7 @@ import { Header } from '../../../components/Header';
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 import { Information} from "../../../components/Information";
-import { useState, useEffect } from 'react';
-import { api } from '../../../services/api';
+import { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -16,6 +15,17 @@ export function Pix() {
   const location = useLocation();
   const { cartItems, deliveryMethod, totalPrice } = location.state;
 
+  function handleConfirm() {
+    navigate("/confirm", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+        paymentMethod: "Pix"
+      }
+    });
+  }
+ 
   function handleShowCard() {
     setShowCard(true);
   }
@@ -30,17 +40,6 @@ export function Pix() {
     navigate(-1);
   }
 
-  function handleConfirm() {
-    navigate("/confirm", {
-      state: {
-        cartItems,
-        deliveryMethod,
-        totalPrice,
-        paymentMethod: "Pix"
-      }
-    });
-  }
- 
 
   return (
     <Container>

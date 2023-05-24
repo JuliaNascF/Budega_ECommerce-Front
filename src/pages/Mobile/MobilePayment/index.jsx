@@ -4,10 +4,9 @@ import { FaSpinner } from "react-icons/fa";
 import { ButtonText } from "../../../components/ButtonText";
 import { Information} from "../../../components/Information";
 import { useState, useEffect } from 'react';
-import { api } from '../../../services/api';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
-import creditCard from "../../../assets/creditCard.svg";
+import { useLocation } from "react-router-dom";
 import methodCard from "../../../assets/card.svg";
 import methodPix from "../../../assets/pix.svg";
 import methodBoleto from "../../../assets/boleto.svg";
@@ -16,6 +15,9 @@ import methodQRCode from "../../../assets/qrCode.svg";
 
 export function MobilePayment() {
   const [showCard, setShowCard] = useState(false);
+  const location = useLocation();
+  const { cartItems, deliveryMethod, totalPrice } = location.state;
+ 
 
   function handleShowCard() {
     setShowCard(true);
@@ -28,24 +30,51 @@ export function MobilePayment() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate("/");
+    navigate(-1);
   }
 
+
   function handleBoleto() {
-    navigate("/boleto");
+    navigate("/boleto", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
   function handleCard() {
-    navigate("/card");
+    navigate("/card", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
+
   function handlePix() {
-    navigate("/pix");
+    navigate("/pix", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
 
   function handleQRCode() {
-    navigate("/qrcode");
+    navigate("/qrcode", {
+      state: {
+        cartItems,
+        deliveryMethod,
+        totalPrice,
+      }
+    });
   }
+
 
 
 

@@ -1,5 +1,4 @@
 import { Container, Content } from "./styles";
-import { Header } from '../../../components/Header';
 import { ButtonText } from "../../../components/ButtonText";
 import { Button } from "../../../components/Button";
 import { FiArrowLeft } from 'react-icons/fi';
@@ -8,7 +7,7 @@ import { api } from "../../../services/api";
 
 import { useLocation } from "react-router-dom";
 
-export function Confirm() {
+export function MobileConfirm() {
     const location = useLocation();
     const orderData = location.state; 
     const navigate = useNavigate();
@@ -18,7 +17,7 @@ export function Confirm() {
     }
 
     async function handlePlaceOrder() {
-      navigate("/")
+      navigate("/home")
       try {
         await api.post("/orders", orderData); 
       } catch (error) {
@@ -27,21 +26,19 @@ export function Confirm() {
       }
    
   
-  
-  
     }
 
     
     return (
       <Container>
-      <Header />
       <main>
         <div className="back">
           <ButtonText onClick={handleBack} icon={FiArrowLeft}  />
+          <h2>Resumo da Compra</h2>
         </div>
         <Content> 
       
-        <h2>Resumo da Compra</h2>
+       
         <p>Produtos: {orderData.cartItems.map(item => item.product.title).join(", ")}</p>
         <p>Forma de entrega: {orderData.deliveryMethod}</p>
         <p>Forma de pagamento: {orderData.paymentMethod}</p>
