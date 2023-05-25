@@ -5,13 +5,20 @@ export const Container = styled.div`
 
     main {
  
-  .back{
-   
-    margin-left: 150px;
+      .back{
+    display: flex;
+    gap: 5px;
+    margin-left: 20px;
     margin-top: 30px;
     svg{
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     }
+
+    h2{
+      color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+      font-size:25px;
+    }
+
   }
 }
 
@@ -19,18 +26,20 @@ export const Container = styled.div`
   `;
 
 export const Content = styled.div`
-  max-width: 1130px;
-  margin: 0 auto;
   
   display: flex;
  flex-direction:column;
-  gap: 20px;
-  margin-bottom:40px;
+  gap: 10px;
+  margin: 30px;
 
-  h2{
-    font-size:25px;
+  .order{
+    border-bottom: 1px solid #AEA3A3;
+    .price{
+      margin-bottom:10px;
+    }
   }
 
+  
   h3{
     
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};

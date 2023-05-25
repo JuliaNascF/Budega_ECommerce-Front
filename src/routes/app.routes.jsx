@@ -28,6 +28,7 @@ import { MobileBoleto } from '../pages/Mobile/MobileBoleto';
 import { MobileCard} from '../pages/Mobile/MobileCard';
 import { MobileQRCode } from '../pages/Mobile/MobileQRCode';
 import { MobileConfirm } from '../pages/Mobile/MobileConfirm';
+import { MobileOrder } from '../pages/Mobile/MobileOrder';
 
 
 export  function AppRoutes(){
@@ -52,6 +53,7 @@ export  function AppRoutes(){
           <Route path="/pix" element={<MobilePix />} />
           <Route path="/qrcode" element={<MobileQRCode/>} />
           <Route path="/confirm" element={<MobileConfirm/>} />
+          <Route path="/order" element={<MobileOrder/>} />
        
         </>
       ) : (
