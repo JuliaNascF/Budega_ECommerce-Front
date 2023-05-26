@@ -50,7 +50,6 @@ export function MobileDetails() {
       setCategory(response.data.category);
       setCurrentProductId(response.data._id);
     }
-
     fetchProduct();
   }, [params.id])
 
@@ -83,7 +82,7 @@ export function MobileDetails() {
     if (user && user._id) {
       setIsFavorite(true);
       try {
-        const response = await api.post(`/favorites/${currentProductId}`);
+     await api.post(`/favorites/${currentProductId}`);
 
       } catch (error) {
       }
@@ -97,7 +96,7 @@ export function MobileDetails() {
     if (user && user._id) {
       setIsFavorite(false);
       try {
-        const response = await api.delete(`/favorites/${currentProductId}`);
+       await api.delete(`/favorites/${currentProductId}`);
 
       } catch (error) {
       }
@@ -129,7 +128,7 @@ export function MobileDetails() {
 
     if (user && user._id) {
       try {
-        const response = await api.post(`/cart/${currentProductId}`);
+        await api.post(`/cart/${currentProductId}`);
         setAlertMessageCart("Produto adicionado ao carrinho!");
         setShowAlertCart(true);
       } catch (error) {
@@ -148,7 +147,7 @@ export function MobileDetails() {
     
     if (user && user._id) {
       try {
-        const response = await api.post(`/cart/${currentProductId}`);
+      await api.post(`/cart/${currentProductId}`);
         navigate("/cart")
       } catch (error) {
       }
@@ -171,7 +170,7 @@ export function MobileDetails() {
           <Slider dots={true} infinite={true} slidesToShow={1} slidesToScroll={1}>
             {data.images &&
               data.images.map((imageUrl, index) => (
-                <img key={index} src={imageUrl} alt={`Image ${index}`} />
+                <img key={index} src={imageUrl} alt={index} />
               ))}
           </Slider>
 

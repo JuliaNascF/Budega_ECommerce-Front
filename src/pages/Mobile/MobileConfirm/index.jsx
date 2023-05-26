@@ -13,7 +13,7 @@ export function MobileConfirm() {
     const navigate = useNavigate();
   
     function handleBack() {
-      navigate("/");
+      navigate(-1);
     }
 
     async function handlePlaceOrder() {

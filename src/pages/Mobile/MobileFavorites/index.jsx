@@ -33,7 +33,7 @@ export function MobileFavorites() {
   const { user } = useAuth();
 
   function handleBack() {
-    navigate(-1);
+    navigate("/home");
   }
 
   function handleDetails(id) {
@@ -48,7 +48,7 @@ export function MobileFavorites() {
 
     
       try {
-        const response = await api.delete(`/favorites/${id}`);
+       await api.delete(`/favorites/${id}`);
         fetchFavorites();
       } catch (error) {
         alert("Erro ao remover produto dos favoritos!");

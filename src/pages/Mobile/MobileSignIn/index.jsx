@@ -25,7 +25,11 @@ export function MobileSignIn() {
           }
         })
         .catch((error) => {
-          console.log(error)
+          if (error.response && error.response.data && error.response.data.error) {
+            alert("Erro: " + error.response.data.error);
+          } else {
+            alert("Não foi possível cadastrar");
+          }
         });
     }
     
@@ -42,7 +46,7 @@ export function MobileSignIn() {
             <main>
             <Form>
 
-            <img className="Budega" src={logo} />
+            <img className="Budega" src={logo} alt="" />
              
 
                 <Input

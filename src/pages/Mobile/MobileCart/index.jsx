@@ -39,7 +39,7 @@ export function MobileCart() {
   const navigate = useNavigate();
 
   function handleBack() {
-    navigate(-1);
+    navigate("/home");
   }
 
   function handlePay() {
