@@ -14,6 +14,7 @@ const Sidebar = ({sidebar, active }) => {
       function handleSignOut(){
         navigate("/");
          signOut();
+         window.location.reload();
       }
 
       function handleOrder(){

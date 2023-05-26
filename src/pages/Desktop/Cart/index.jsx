@@ -1,15 +1,15 @@
 
-import { Container, Content } from "./styles"
-import { Header } from '../../../components/Header'
+import { Container, Content } from "./styles";
+import { Header } from '../../../components/Header';
 import { Input } from "../../../components/Input";
-import { Button } from '../../../components/Button'
+import { Button } from '../../../components/Button';
 import { CartItem } from "../../../components/CartItem";
 import { ButtonFreight } from "../../../components/ButtonFreight";
 import { ButtonText } from "../../../components/ButtonText";
 import { useState, useEffect } from 'react';
 import { api } from '../../../services/api';
-import { BiHome, BiStore } from 'react-icons/bi'
-import { FiArrowLeft } from 'react-icons/fi'
+import { BiHome, BiStore } from 'react-icons/bi';
+import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 

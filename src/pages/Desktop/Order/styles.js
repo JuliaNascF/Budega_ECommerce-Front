@@ -1,6 +1,15 @@
 import styled, { keyframes } from 'styled-components'
 
 
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
 export const Container = styled.div`
 
     main {
@@ -45,7 +54,21 @@ export const Content = styled.div`
 
  }
 
-  
+  .noOrder{
+    font-size: 35px;
+  color: ${({ theme }) => theme.COLORS.GRAY_900};
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 20%;
+  }
+
+  .loading-spinner {
+   margin-top: 20%;
+   margin-left: 50%;
+ animation:${spin} 1s linear infinite;
+}
+
    
 `;
 

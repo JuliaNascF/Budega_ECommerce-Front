@@ -7,12 +7,15 @@ import { Input } from '../../../components/Input/index'
 import { Button } from '../../../components/Button/index'
 import { ButtonText } from "../../../components/ButtonText";
 import { useNavigate } from "react-router-dom";
+import { AlertModal } from "../../../components/AlertModal";
 
 
 export function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
 
     const navigate= useNavigate();
 
@@ -28,8 +31,10 @@ export function SignUp() {
       
       api.post("/users", {name, email, password})
       .then(() => {
-        alert("Usuário cadastrado com sucesso ");
-        navigate("/signin")
+        setAlertMessage("Usuário cadastrado com sucesso!");
+        setShowAlert(true);
+      
+      
       
       })
       .catch(error => {
@@ -90,7 +95,7 @@ export function SignUp() {
                  
             </Form>
                     </main>
-
+                    {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}
         </Container>
 
 

@@ -21,7 +21,7 @@ export function MobileSignIn() {
         .then(() => {
           const isAuthenticated = localStorage.getItem('@budega:token') !== null;
           if (isAuthenticated) {
-            navigate('/')
+            navigate('/home')
           }
         })
         .catch((error) => {

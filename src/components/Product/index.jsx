@@ -5,9 +5,13 @@ import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { ButtonText } from "../ButtonText";
+import { AlertModal } from "../AlertModal"
 
 export function  Product({ data, title, price, thumbnail, ...rest }){
   const [isFavorite, setIsFavorite] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const { user } = useAuth();
 
   const navigate= useNavigate();
@@ -34,11 +38,11 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
         const response = await api.post(`/favorites/${data._id}`);
         console.log(response)
       } catch (error) {
-        alert("Erro ao adicionar produto aos favoritos!");
       }
     } else {
-      alert("Você precisa estar logado para adicionar produtos aos favoritos!");
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para adicionar produtos aos favoritos!");
+      setShowAlert(true);
+    
     }
   }
 
@@ -49,11 +53,11 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
         const response = await api.delete(`/favorites/${data._id}`);
        
       } catch (error) {
-        alert("Erro ao remover produto dos favoritos!");
       }
     } else {
-      alert("Você precisa estar logado para remover produtos dos favoritos!");
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para remover produtos aos favoritos!");
+      setShowAlert(true);
+    
     }
   }
 
@@ -74,7 +78,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
 
   return(
     <Container {...rest}>
-
+         
          
         <img  onClick={() => handleDetails(data._id)} src={data.thumbnail} />
       <div className="productDetails">
@@ -104,6 +108,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
        
         />
       </div>
+      {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}
 
     </Container>
   )

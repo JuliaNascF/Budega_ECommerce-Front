@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { Container, Form } from "./styles";
-import { FiMail, FiLock, FiUser } from 'react-icons/fi'
-import logo from "../../../assets/logoMobile.svg"
+import { FiMail, FiLock, FiUser } from 'react-icons/fi';
+import logo from "../../../assets/logoMobile.svg";
 import { api } from '../../../services/api';
-import { Input } from '../../../components/Input/index'
-import { Button } from '../../../components/Button/index'
+import { Input } from '../../../components/Input/index';
+import { Button } from '../../../components/Button/index';
 import { ButtonText } from "../../../components/ButtonText";
 import { useNavigate } from "react-router-dom";
+import { AlertModal } from "../../../components/AlertModal";
 
 
 export function MobileSignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
     const navigate= useNavigate();
 
   function handleSignIn(){
@@ -28,8 +30,8 @@ export function MobileSignUp() {
       
       api.post("/users", {name, email, password})
       .then(() => {
-        alert("Usuário cadastrado com sucesso ");
-        navigate("/signin")
+        setAlertMessage("Usuário cadastrado com sucesso!");
+        setShowAlert(true);
       
       })
       .catch(error => {
@@ -87,7 +89,7 @@ export function MobileSignUp() {
                  
             </Form>
                     </main>
-
+                    {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}
         </Container>
 
 

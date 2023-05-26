@@ -58,4 +58,6 @@ export const Container = styled.div`
     right: 10%;
 
   }
+
+ 
 `;

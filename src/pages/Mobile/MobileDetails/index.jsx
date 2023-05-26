@@ -2,6 +2,8 @@
 import { Container, Content } from "./styles"
 import { Button } from '../../../components/Button'
 import { ButtonText } from '../../../components/ButtonText'
+import { AlertModal } from "../../../components/AlertModal"
+import { AlertCart } from "../../../components/AlertCart"
 import { Product } from "../../../components/Product"
 import { api } from "../../../services/api"
 import { useState, useEffect } from "react";
@@ -17,11 +19,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 export function MobileDetails() {
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlertCart, setShowAlertCart] = useState(false);
+  const [alertMessageCart, setAlertMessageCart] = useState("");
 
 
   const { user } = useAuth(); // Obter o objeto de contexto de autenticação
@@ -81,13 +86,10 @@ export function MobileDetails() {
         const response = await api.post(`/favorites/${currentProductId}`);
 
       } catch (error) {
-        alert("Erro ao adicionar produto aos favoritos!");
       }
     } else {
-      alert("Você precisa estar logado para adicionar produtos aos favoritos!");
-
-
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para adicionar produtos aos favoritos!");
+      setShowAlert(true);
     }
   }
 
@@ -98,14 +100,10 @@ export function MobileDetails() {
         const response = await api.delete(`/favorites/${currentProductId}`);
 
       } catch (error) {
-        alert("Erro ao remover produto dos favoritos!");
       }
     } else {
-      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
-      alert("Você precisa estar logado para remover produtos dos favoritos!");
-      // ou redirecione o usuário para a página de login:
-      // history.push('/login');
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para remover produtos dos favoritos!");
+      setShowAlert(true);
     }
   }
 
@@ -132,16 +130,15 @@ export function MobileDetails() {
     if (user && user._id) {
       try {
         const response = await api.post(`/cart/${currentProductId}`);
-        alert("Produto adicionado ao carrinho!");
+        setAlertMessageCart("Produto adicionado ao carrinho!");
+        setShowAlertCart(true);
       } catch (error) {
-        alert("Erro ao adicionar produto ao carrinho!");
+        setAlertMessage("Erro ao adicionar produto ao carrinho!");
+        setShowAlert(true);
       }
     } else {
-      // O usuário não está autenticado ou não tem um ID válido, então precisamos exibir uma mensagem de erro ou redirecioná-lo para a página de login
-      alert("Você precisa estar logado para adicionar produtos ao carrinho!");
-      // ou redirecione o usuário para a página de login:
-      // history.push('/login');
-      navigate("/signin")
+      setAlertMessage("Você precisa estar logado para adicionar produto ao carrinho!");
+      setShowAlert(true);
     }
   }
 
@@ -154,12 +151,11 @@ export function MobileDetails() {
         const response = await api.post(`/cart/${currentProductId}`);
         navigate("/cart")
       } catch (error) {
-        alert("Erro ao comoprar produto ao carrinho!");
       }
     } else {
     
-      alert("Você precisa estar logado para comprar produtos!");
-      navigate("/signin")
+      setAlertMessage("Você precisa estar logado para comprar produtos!");
+      setShowAlert(true);
     }
   }
 
@@ -253,6 +249,8 @@ export function MobileDetails() {
 
         </Content>
       </main>
+      {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}
+      {showAlertCart && <AlertCart message={alertMessageCart} onClose={() => setShowAlertCart(false)} />}
     </Container>
   )
 }

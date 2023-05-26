@@ -40,7 +40,7 @@ export const Container = styled.div`
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
     }
     margin-left: 150px;
-    margin-top: 10px;
+    margin-top: 30px;
   }
 }
 

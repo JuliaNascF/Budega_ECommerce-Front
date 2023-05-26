@@ -3,11 +3,13 @@ import { Container, Content } from "./styles";
 import { Header } from '../../../components/Header';
 import { ButtonText } from "../../../components/ButtonText";
 import { FiArrowLeft } from 'react-icons/fi';
+import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { api } from "../../../services/api";
 
 export function Order() {
+  const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -21,9 +23,11 @@ export function Order() {
       try {
         const response = await api.get("/orders/pedidos");
         const data = await response.data;
+        setIsLoading(false);
         setOrders(data);
       } catch (error) {
         console.error(error);
+        setIsLoading(false);
       }
     }
 
@@ -40,26 +44,27 @@ export function Order() {
         </div>
         <Content>
           <h2>Histórico de Compras </h2>
-          {orders.map((order) => (
+          {isLoading ? (
+            <FaSpinner size={25} className="loading-spinner" />
+            ) : orders.length >0 ? (
+          orders.map((order) => (
             <div key={order._id}>
-              <h3>Pedido: {order._id}</h3>
-              <p>Método de entrega: {order.deliveryMethod}</p>
-              <p>Método de pagamento: {order.paymentMethod}</p>
-              <p>
-                {order.cartItems.map((item) => (
-                  <li key={item.productId}>
-                    {item.product.title} - Quantidade: {item.quantity}
-                  </li>
-                ))}
-              </p>
+                <h3>Pedido: {order._id}</h3>
+                <p>Método de entrega: {order.deliveryMethod}</p>
+                <p>Método de pagamento: {order.paymentMethod}</p>
+                <p>
+                  {order.cartItems.map((item) => (
+                    <li key={item.productId}>
+                      {item.product.title} - Quantidade: {item.quantity}
+                    </li>
+                  ))}
+                </p>
                 <p>Preço total: {order.totalPrice}</p>
-            </div>
-          ))}
-
-
-
-
-
+              </div>
+            ))
+            ) : (
+              <p className="noOrder">Você não possui compras</p>
+          )}
         </Content>
 
 

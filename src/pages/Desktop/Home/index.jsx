@@ -3,18 +3,16 @@ import { Header } from "../../../components/Header";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
 import { ButtonText } from "../../../components/ButtonText";
+import { Loading } from "../../../components/Loading";
 import { useEffect, useState, useRef } from "react";
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md"
-import { useNavigate } from 'react-router-dom';
 import { api } from "../../../services/api";
-import { isNull } from "lodash";
-
-
 
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -27,7 +25,9 @@ function Home() {
    
   useEffect(() => {
     async function fetchProducts() {
+
       const resp = await api.get("/products");
+      setLoading(false);
       const allProducts = resp.data;
 
       const filteredProducts = allProducts.filter((product) => {
@@ -40,10 +40,11 @@ function Home() {
           lowerCaseCategory.includes(lowerCaseSearch)
         );
       });
-
       setProducts(filteredProducts);
+     
+     
     }
-
+    
     fetchProducts();
   }, [search]);
 
@@ -137,18 +138,33 @@ const luminariaProductContainerRef = useRef(null);
               display: "flex",
               scrollBehavior: "smooth"
             }} ref={sofaProductContainerRef}>
-
-              {products
-                .filter((product) => product.category === "sofa")
-                .map((product) => (
-                  <Product
-                  key={product._id}
-                    thumbnail={product.thumbnail}
-                    category={product.category}
-                    price={product.price}
-                    data={product}
-                  />
-                ))}
+              {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+                // Renderizar os produtos normalmente quando o carregamento estiver concluído
+                products
+                  .filter((product) => product.category === "sofa")
+                  .map((product) => (
+                    <Product
+                      key={product._id}
+                      thumbnail={product.thumbnail}
+                      category={product.category}
+                      price={product.price}
+                      data={product}
+                    />
+                  ))
+              )}
             </div>
 
             <ButtonText
@@ -174,7 +190,22 @@ const luminariaProductContainerRef = useRef(null);
               display: "flex",
               scrollBehavior: "smooth"
             }} ref={ mesaProductContainerRef }>
-              {products
+                {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "mesa")
                 .map((product) => (
                   <Product
@@ -184,7 +215,8 @@ const luminariaProductContainerRef = useRef(null);
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+              )}
             </div>
 
             <ButtonText
@@ -208,7 +240,22 @@ const luminariaProductContainerRef = useRef(null);
               display: "flex",
               scrollBehavior: "smooth"
             }} ref={cadeiraProductContainerRef}>
-              {products
+                 {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "cadeira")
                 .map((product) => (
                   <Product
@@ -218,7 +265,8 @@ const luminariaProductContainerRef = useRef(null);
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+                  )}
             </div>
 
             <ButtonText
@@ -243,7 +291,22 @@ const luminariaProductContainerRef = useRef(null);
               display: "flex",
               scrollBehavior: "smooth"
             }} ref={luminariaProductContainerRef}>
-              {products
+                   {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "luminaria")
                 .map((product) => (
                   <Product
@@ -253,7 +316,8 @@ const luminariaProductContainerRef = useRef(null);
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+                  )}
             </div>
 
             <ButtonText

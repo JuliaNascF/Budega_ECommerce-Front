@@ -12,6 +12,7 @@ const SidebarMobile = ({sidebar, active }) => {
 
       function handleSignOut(){
          signOut();
+         window.location.reload();
       }
 
       function handleFavorites(){

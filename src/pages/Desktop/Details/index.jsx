@@ -4,6 +4,8 @@ import { Header } from '../../../components/Header'
 import { Button } from '../../../components/Button'
 import { ButtonText } from '../../../components/ButtonText'
 import { Product } from "../../../components/Product"
+import { AlertModal } from "../../../components/AlertModal"
+import { AlertCart } from "../../../components/AlertCart"
 import { api } from "../../../services/api"
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,16 +14,21 @@ import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
 import { useAuth } from "../../../hooks/auth"
 
-export function Details() {
+export function Details(){
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlertCart, setShowAlertCart] = useState(false);
+  const [alertMessageCart, setAlertMessageCart] = useState("");
+  
  
 
-  const { user } = useAuth(); // Obter o objeto de contexto de autenticação
+  const { user } = useAuth(); 
   const params = useParams();
   const navigate = useNavigate();
 
@@ -29,11 +36,6 @@ export function Details() {
     navigate("/");
   }
 
-     
-  function handlePay() {
-    navigate("/payment");
-  }
-   
 
   useEffect(() => {
     async function fetchProduct() {
@@ -80,13 +82,10 @@ export function Details() {
         const response = await api.post(`/favorites/${currentProductId}`);
         
       } catch (error) {
-        alert("Erro ao adicionar produto aos favoritos!");
       }
     } else {
-      alert("Você precisa estar logado para adicionar produtos aos favoritos!");
-    
-  
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para adicionar produtos aos favoritos!");
+      setShowAlert(true);
     }
   }
   
@@ -97,12 +96,10 @@ export function Details() {
         const response = await api.delete(`/favorites/${currentProductId}`);
       
       } catch (error) {
-        alert("Erro ao remover produto dos favoritos!");
       }
     } else {
-    alert("Você precisa estar logado para remover produtos dos favoritos!");
-    
-      navigate("/signin");
+      setAlertMessage("Você precisa estar logado para remover produtos dos favoritos!");
+      setShowAlert(true);
     }
   }
 
@@ -129,14 +126,16 @@ export function Details() {
     if (user && user._id) {
       try {
         const response = await api.post(`/cart/${currentProductId}`);
-        alert("Produto adicionado ao carrinho!");
+        setAlertMessageCart("Produto adicionado ao carrinho!");
+        setShowAlertCart(true);
       } catch (error) {
-        alert("Erro ao adicionar produto ao carrinho!");
+        setAlertMessage("Erro ao adicionar produto ao carrinho!");
+        setShowAlert(true);
       }
     } else {
     
-      alert("Você precisa estar logado para adicionar produtos ao carrinho!");
-      navigate("/signin")
+      setAlertMessage("Você precisa estar logado para adicionar produto ao carrinho!");
+      setShowAlert(true);
     }
   }
   
@@ -150,12 +149,11 @@ export function Details() {
         const response = await api.post(`/cart/${currentProductId}`);
         navigate("/cart")
       } catch (error) {
-        alert("Erro ao comoprar produto ao carrinho!");
       }
     } else {
     
-      alert("Você precisa estar logado para comprar produtos!");
-      navigate("/signin")
+      setAlertMessage("Você precisa estar logado para comprar produtos!");
+      setShowAlert(true);
     }
   }
   
@@ -183,7 +181,7 @@ export function Details() {
               ))}
             </div>
             <div className="selected-image">
-              <img src={data.images?.[selectedIndex]} alt="Selected" />
+              <img src={data.images?.[selectedIndex]}  />
             </div>
             <div className="details">
 
@@ -242,6 +240,8 @@ export function Details() {
 
         </Content>
       </main>
+      {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}
+      {showAlertCart && <AlertCart message={alertMessageCart} onClose={() => setShowAlertCart(false)} />}
     </Container>
   )
 }
