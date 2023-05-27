@@ -1,6 +1,7 @@
 import { Container, Content, Image, Category } from "./styles";
 import { Product } from "../../../components/Product"
 import { HeaderPage } from "../../../components/HeaderPage";
+import { Loading } from "../../../components/Loading";
 import SidebarMobile from "../../../components/SidebarMobile";
 import { useEffect, useState } from "react";
 import { FaBars, FaTimes, FaSearch } from 'react-icons/fa'
@@ -16,6 +17,7 @@ import cart from "../../../assets/cart.svg"
   const [menuIconAnimation, setMenuIconAnimation] = useState('');
   const [sidebar, setSidebar] = useState(false)
   const [search, setSearch] = useState("")
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -35,6 +37,7 @@ import cart from "../../../assets/cart.svg"
   useEffect(() => {
     async function fetchProducts() {
       const resp = await api.get("/products");
+      setLoading(false);
       const allProducts = resp.data;
 
       const filteredProducts = allProducts.filter((product) => {
@@ -121,18 +124,33 @@ import cart from "../../../assets/cart.svg"
               display: "flex",
               scrollBehavior: "smooth"
             }} >
-
-              {products
-                .filter((product) => product.category === "sofa")
-                .map((product) => (
-                  <Product
-                  key={product._id}
-                    thumbnail={product.thumbnail}
-                    category={product.category}
-                    price={product.price}
-                    data={product}
-                  />
-                ))}
+               {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+              
+                products
+                  .filter((product) => product.category === "sofa")
+                  .map((product) => (
+                    <Product
+                      key={product._id}
+                      thumbnail={product.thumbnail}
+                      category={product.category}
+                      price={product.price}
+                      data={product}
+                    />
+                  ))
+              )}
             </div>
 
            
@@ -151,7 +169,22 @@ import cart from "../../../assets/cart.svg"
               display: "flex",
               scrollBehavior: "smooth"
             }} >
-              {products
+                {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "mesa")
                 .map((product) => (
                   <Product
@@ -161,9 +194,9 @@ import cart from "../../../assets/cart.svg"
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+              )}
             </div>
-
        
 
           </Category>
@@ -178,7 +211,22 @@ import cart from "../../../assets/cart.svg"
               display: "flex",
               scrollBehavior: "smooth"
             }}>
-              {products
+                 {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "cadeira")
                 .map((product) => (
                   <Product
@@ -188,7 +236,8 @@ import cart from "../../../assets/cart.svg"
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+                  )}
             </div>
 
         
@@ -206,7 +255,22 @@ import cart from "../../../assets/cart.svg"
               display: "flex",
               scrollBehavior: "smooth"
             }} >
-              {products
+                   {loading ? (
+              <div className="loading"  style={{
+                display: "flex",
+                gap: "10px",
+                scrollBehavior: "smooth"
+              }}>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+                <Loading/>
+              </div>
+                
+              ) : (
+
+              products
                 .filter((product) => product.category === "luminaria")
                 .map((product) => (
                   <Product
@@ -216,7 +280,8 @@ import cart from "../../../assets/cart.svg"
                     price={product.price}
                     data={product}
                   />
-                ))}
+                  ))
+                  )}
             </div>
 
 

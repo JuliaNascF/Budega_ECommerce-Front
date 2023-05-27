@@ -46,11 +46,13 @@ export const Content = styled.div`
  
  >p{
   font-size: 35px;
+  width: 400px;
   color: ${({ theme }) => theme.COLORS.GRAY_900};
   display: flex;
   justify-content: center;
   text-align: center;
   margin-top: 30%;
+  margin-left:26%;
 
   
  }

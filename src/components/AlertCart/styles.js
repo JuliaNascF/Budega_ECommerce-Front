@@ -18,6 +18,7 @@ export const Container = styled.div`
 .alert-modal {
   display: flex;
   flex-direction:column;
+  gap: 10px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;

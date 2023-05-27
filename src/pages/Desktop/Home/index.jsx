@@ -152,7 +152,7 @@ const luminariaProductContainerRef = useRef(null);
               </div>
                 
               ) : (
-                // Renderizar os produtos normalmente quando o carregamento estiver concluído
+              
                 products
                   .filter((product) => product.category === "sofa")
                   .map((product) => (

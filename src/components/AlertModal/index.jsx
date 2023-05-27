@@ -13,12 +13,15 @@ import { useNavigate } from "react-router-dom";
       <div className="alert-modal">
         <p>{message}</p>
         
-    
+         
        
         {showLoginButton && (
             <button onClick={handleSignIn}>Ir para o Login</button>
           )}
         <button onClick={onClose}>Fechar</button>
+
+   
+       
 
         
       </div>

@@ -66,8 +66,8 @@ export const Content = styled.div`
     button{
       color: ${({ theme }) => theme.COLORS.GRAY_900};
       position: absolute;
-      right:10%;
-      top:8%;
+      right:4%;
+      top:4%;
     }
   }
 

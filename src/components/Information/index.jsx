@@ -20,7 +20,7 @@ export function Information({ onClose, Mobile=false }) {
                 A funcionalidade de pagamento nesta plataforma não está em operação.
                  O objetivo da aplicação é demonstrar minhas habilidades como desenvolvedor, 
                  portanto, a etapa de pagamento não está ativa. No entanto, você pode navegar e visualizar os produtos disponíveis no ecommerce.
-                  Ao clicar em "pagar", a ação será registrada no seu histórico de compras, mas o pagamento não será processado.
+                  Ao clicar em "Fechar Pedido", a ação será registrada no seu histórico de compras, mas o pagamento não será processado.
                 </CardText>
             </CardContent>
         </Container>

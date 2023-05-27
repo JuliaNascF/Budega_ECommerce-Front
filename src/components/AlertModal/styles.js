@@ -18,7 +18,7 @@ export const Container = styled.div`
   margin-right: 40px;
   display: flex;
   flex-direction:column;
-  gap: 10px;
+  gap: 20px;
   justify-content:center;
   align-items:center;
   background-color: #fff;
@@ -42,6 +42,7 @@ export const Container = styled.div`
   border-radius: 4px;
   cursor: pointer;
 }
+
 
 
 `;

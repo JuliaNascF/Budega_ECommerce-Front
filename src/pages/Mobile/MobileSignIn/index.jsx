@@ -36,8 +36,6 @@ export function MobileSignIn() {
     function handleSignUp(){
       navigate("/register");
     }
- 
-
 
     return (
         <Container>

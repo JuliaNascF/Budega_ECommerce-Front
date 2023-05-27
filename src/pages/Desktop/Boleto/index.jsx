@@ -53,7 +53,7 @@ export function Boleto() {
          
             <h3>34191.79001 01043.510047 91020.150008 8 87980026000</h3>
            
-             <Button onClick={handleConfirm} title="Comprar "/>
+             <Button onClick={handleConfirm} title="Efetuar pagamento "/>
 
           <p>Em caso de dúvida clique <span onClick={handleShowCard}>aqui</span>
             </p>

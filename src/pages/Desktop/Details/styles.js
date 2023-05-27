@@ -59,8 +59,8 @@ export const Content = styled.div`
 
 .selected-image{
   img{
-    width: 600px;
-   
+    width: 400px;
+  
 
   }
 }
@@ -85,12 +85,14 @@ export const Content = styled.div`
     margin-top: 40px;
     img{
       cursor:pointer;
-      width: 100px;
+      width: 100px
+     
     }
 
     img.active{
       border: 1px solid #DBDBDB;
       border-radius: 3px
+     
     }
 
   }

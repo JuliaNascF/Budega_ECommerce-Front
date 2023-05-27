@@ -24,28 +24,25 @@ export function SignUp() {
   }
 
 
-    function handleSingUp(){
-      if(!name || !email || !password ) {
-        return alert("Preencha todos os campos!")
-      }
-      
-      api.post("/users", {name, email, password})
+
+  function handleSignUp() {
+    if (!name || !email || !password) {
+      return alert("Preencha todos os campos!");
+    }
+
+    api.post("/users", { name, email, password })
       .then(() => {
         setAlertMessage("Usuário cadastrado com sucesso!");
         setShowAlert(true);
-      
-      
-      
       })
       .catch(error => {
-        if(error.response){
-            alert(error.response.data.message);
-        }else{
-            alert("Não foi possível cadastrar")
+        if (error.response && error.response.data && error.response.data.error) {
+          alert("Erro: " + error.response.data.error);
+        } else {
+          alert("Não foi possível cadastrar");
         }
-      })
-    }
-
+      });
+  }
 
     return (
         <Container>
@@ -56,7 +53,7 @@ export function SignUp() {
             <main>
 
             <Form>
-            <img className="Budega" src={logo} />
+            <img className="Budega" src={logo} alt="" />
              
                <Input
                     login
@@ -86,7 +83,7 @@ export function SignUp() {
                     onChange = { e => setPassword(e.target.value)}
                     />
 
-                <Button title= "Cadastrar" onClick= {handleSingUp}/>
+                <Button title= "Cadastrar" onClick= {handleSignUp}/>
                 <div className="backLogin">
 
                 <ButtonText onClick={handleSignIn} title= "Voltar para o login"/>
