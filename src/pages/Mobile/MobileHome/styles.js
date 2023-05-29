@@ -37,13 +37,7 @@ export const Container = styled.div`
   > main {
     grid-area: content;
     overflow-y: auto;
-    
-    &.no-scroll {
-      overflow: hidden;
-  }
 
- 
-    
      h3 {
 
     margin-bottom: 20px;
@@ -135,8 +129,6 @@ export const Content = styled.div`
    h1{
     font-size: 20px;
    }
-
-  
   }
 
  

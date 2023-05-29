@@ -113,7 +113,7 @@ const luminariaProductContainerRef = useRef(null);
 
         <Image>
           <h2>
-            Confira nossa <span>Newsletter </span>
+            Confira nossa <span>Newsletter</span>
           </h2>
         </Image>
 

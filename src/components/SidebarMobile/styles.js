@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
  background-color: ${({ theme }) => theme.COLORS.WHITE};
   border-radius: 5px;
-  z-index: 2000;
-  position: fixed;
-  height: 55%;
+  z-index: 3000;
+  position: absolute;
+  height: 170px;
   top: 70px;
   width: 300px;
   left: ${props => props.sidebar ? '0' : '-100%'};

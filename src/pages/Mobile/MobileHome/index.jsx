@@ -69,14 +69,7 @@ import cart from "../../../assets/cart.svg"
   const toggleMenu = () => {
     setSidebar(!sidebar);
     setMenuIconAnimation(sidebar ? 'bars-rotate' : 'times-rotate');
-    const mainElement = document.querySelector("main");
-    if (mainElement) {
-      if (!sidebar) {
-        mainElement.classList.add("no-scroll");
-      } else {
-        mainElement.classList.remove("no-scroll");
-      }
-    }
+   
   };
 
 
@@ -110,7 +103,7 @@ import cart from "../../../assets/cart.svg"
         <Content   >
 
 
-          <div className="HeaderPage" style={{ position: "sticky", top: "0px", zIndex: "999" }}>
+          <div className="HeaderPage" style={{ position: "sticky", top: "0px", zIndex: "777" }}>
             <HeaderPage mobile/>
           </div>
 
