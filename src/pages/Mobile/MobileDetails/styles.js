@@ -71,7 +71,13 @@ export const Content = styled.div`
   }
   }
 
- 
+ .relatedProducts{
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  
+
+ }
 
     .buttons{
       margin-top: 50px;
@@ -94,7 +100,7 @@ export const Content = styled.div`
     h3{
       font-size:15px;
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_800};
-      margin-left: 20px;
+      margin: 20px;
     
     }
 

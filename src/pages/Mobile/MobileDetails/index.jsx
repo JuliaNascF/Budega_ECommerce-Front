@@ -56,7 +56,7 @@ export function MobileDetails() {
 
   useEffect(() => {
     async function fetchRelatedProducts() {
-      const response = await api.get(`/products/${category}`); // Busca produtos relacionados usando a categoria do produto atual
+      const response = await api.get(`/products/${category}`); 
 
       const products = response.data;
       const related = sampleSize(products, 5);
@@ -218,16 +218,17 @@ export function MobileDetails() {
 
           </div>
 
+          <h3>Descrição</h3>
+
+          <p> {data.description}</p>
 
           <h2>Produtos Relacionados</h2>
+          
+          <div className="relatedProducts" style={{
+              display: "flex",
+              scrollBehavior: "smooth"
+            }} >
 
-          <Slider 
-            infinite={true}
-            slidesToShow={1}
-            slidesToScroll={1}
-            className="Slider"
-            
-          >
             {relatedProducts.map((product) => (
               <Product
                 key={product._id}
@@ -238,13 +239,7 @@ export function MobileDetails() {
                 onClick={() => handleDetails(product._id)}
               />
             ))}
-          </Slider>
-
-
-
-          <h3>Descrição</h3>
-
-          <p> {data.description}</p>
+            </div>
 
         </Content>
       </main>
