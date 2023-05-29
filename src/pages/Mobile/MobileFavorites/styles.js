@@ -14,14 +14,24 @@ const spin = keyframes`
 export const Container = styled.div`
  width: 100%;
  
-  .back{
-    svg{
-      color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-    }
+  
+.back{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  svg{
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
-    margin-left: 30px;
-    margin-top: 30px;
   }
+  >h2{
+      color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
+      font-size:25px;
+      margin-bottom: 30px;
+      margin-top:5px;
+    }
+}
+    
   `;
 
 
@@ -82,7 +92,7 @@ export const Content = styled.div`
     }
 
     .loading-spinner {
-   margin-top: 30%;
+   margin-top: 50%;
  animation:${spin} 1s linear infinite;
 }
 

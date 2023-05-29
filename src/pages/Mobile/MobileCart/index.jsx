@@ -65,9 +65,9 @@ export function MobileCart() {
     <Container>
       <main>
       
-            <div className="cart">
+            <div className="back">
             <ButtonText onClick={handleBack} icon={FiArrowLeft} />
-            <h1>Carrinho de compras</h1>
+            <h2>Carrinho de compras</h2>
             </div>
          
   
@@ -128,8 +128,10 @@ export function MobileCart() {
                 </div>
               </div>
 
-             
+               <div className="pay">
               <Button onClick={handlePay} title="Ir ao pagamento"/>
+
+               </div>
            
             </div>
           )} 

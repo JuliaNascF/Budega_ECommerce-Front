@@ -47,7 +47,10 @@ export function Confirm() {
         <p>Forma de pagamento: {orderData.paymentMethod}</p>
         <p>Total: {orderData.totalPrice}</p>
         
-       <Button onClick={handlePlaceOrder} title="Fechar Pedido"/>
+        <div className="confirm">
+       <Button onClick={handlePlaceOrder} title="Confirmar pagamento"/>
+
+        </div>
         </Content>
       
 

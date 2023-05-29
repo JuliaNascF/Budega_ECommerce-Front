@@ -16,6 +16,7 @@ export const Container = styled.div`
 }
 
 .alert-modal {
+  width: 380px;
   display: flex;
   flex-direction:column;
   gap: 10px;
@@ -32,7 +33,7 @@ export const Container = styled.div`
 }
 
 .alert-modal button {
-  width: 400px;
+  width: 340px;
   padding: 8px 16px;
   background-color: #333;
   color: #fff;

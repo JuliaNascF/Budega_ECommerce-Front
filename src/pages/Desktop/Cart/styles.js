@@ -128,6 +128,7 @@ export const Content = styled.div`
     }
 
    .pay{
+   width: 500px;
     margin:30px;
    }
     

@@ -16,15 +16,16 @@ export const Container = styled.div`
  width: 100%;
 
  
-.cart{
+.back{
   display: flex;
   align-items: center;
+  gap: 10px;
   margin-top: 20px;
   margin-left: 20px;
   svg{
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
   }
-  >h1{
+  >h2{
       color:${({ theme }) => theme.COLORS.BLUE_GREEN_900};
       font-size:25px;
       margin-bottom: 30px;
@@ -118,13 +119,14 @@ export const Content = styled.div`
     }
 
    .pay{
-    margin:30px;
+    width: 100%;
+    margin-top:20px;
    }
     
    .loading-spinner {
    
-    margin-left: 50%;
-    margin-top: 30%;
+    margin-left: 45%;
+    margin-top: 50%;
   animation:${spin} 1s linear infinite;
 }
 

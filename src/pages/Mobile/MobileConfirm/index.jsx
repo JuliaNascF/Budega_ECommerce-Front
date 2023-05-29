@@ -44,7 +44,7 @@ export function MobileConfirm() {
         <p>Forma de pagamento: {orderData.paymentMethod}</p>
         <p>Total: {orderData.totalPrice}</p>
         
-       <Button onClick={handlePlaceOrder} title="Fechar Pedido"/>
+       <Button onClick={handlePlaceOrder} title="Confirmar pagamento"/>
         </Content>
       
 

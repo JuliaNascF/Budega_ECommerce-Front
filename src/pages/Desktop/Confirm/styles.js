@@ -39,6 +39,7 @@ export const Content = styled.div`
   color:${({ theme }) => theme.COLORS.GRAY_900};
   font-size: 20px;
 
+
  }
 
   @media(max-width:1130px){
@@ -46,6 +47,9 @@ export const Content = styled.div`
   margin: 0 auto;
   }
 
+  .confirm{
+    width: 500px;
+  }
  
    
 `;

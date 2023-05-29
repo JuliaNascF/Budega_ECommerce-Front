@@ -24,17 +24,16 @@ export const Container = styled.div`
 export const Content = styled.div`
 
   display: flex;
-  align-items: center;
  flex-direction:column;
   gap: 20px;
   margin: 30px;
- 
+
 
 
  p{
   color:${({ theme }) => theme.COLORS.GRAY_900};
   font-size: 20px;
-
+  
  }
 
  

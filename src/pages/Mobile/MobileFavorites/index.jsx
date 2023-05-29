@@ -64,6 +64,7 @@ export function MobileFavorites() {
       <main>
         <div className="back">
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />
+          <h2>Favoritos</h2>
         </div>
         <Content>
         {isLoading ? (

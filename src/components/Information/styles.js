@@ -56,6 +56,7 @@ export const CardContent = styled.div`
 
  export const CloseButton = styled.button`
   position: absolute;
+  font-size:18px;
   top: 8px;
   right: 8px;
   background: none;

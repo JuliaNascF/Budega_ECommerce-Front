@@ -97,7 +97,7 @@ export const Container = styled.div`
     }
     
     button{
-    
+     font-size:16px;
      margin-left: 20px;
       width: 20px;
       height:40px

@@ -8,7 +8,7 @@ import { ButtonText } from "../ButtonText";
 
 
 export function  CartItem({ data, fetchCartData, cartMobile=false, ...rest }){
-  const { price, title, thumbnail } = data.product;
+  const { price, title, thumbnail, portion } = data.product;
   const [cartItems, setCartItems] = useState(data.quantity);
 
   async function updateQuantity(newQuantity) {
@@ -72,7 +72,7 @@ export function  CartItem({ data, fetchCartData, cartMobile=false, ...rest }){
         <span> à vista</span> 
       </p>
 
-      <p>10x de R$250 sem juros</p>
+      <p>{portion} sem juros</p>
         </div>
         
         <div className="quantity"> 
