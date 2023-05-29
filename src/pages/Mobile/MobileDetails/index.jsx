@@ -209,7 +209,7 @@ export function MobileDetails() {
             </div>
 
 
-            <p>10x de R$ 250 sem juros</p>
+            <p>{ data.portion} sem juros </p>
 
             <div className="buttons">
               <Button title="Comprar" onClick={AddToCartPay} />
@@ -223,7 +223,7 @@ export function MobileDetails() {
           <p> {data.description}</p>
 
           <h2>Produtos Relacionados</h2>
-          
+
           <div className="relatedProducts" style={{
               display: "flex",
               scrollBehavior: "smooth"

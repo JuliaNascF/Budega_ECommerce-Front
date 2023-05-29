@@ -96,7 +96,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
      { data.price.cents}
       </p>
 
-      <p1>10x de R$250</p1>
+      <p1>{ data.portion}</p1>
 
       </div>
 

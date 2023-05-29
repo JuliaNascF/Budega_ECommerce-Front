@@ -209,8 +209,7 @@ export function Details(){
               </div>
 
 
-              <p>10x de R$ 250 sem juros
-              </p>
+              <p>{ data.portion} sem juros </p>
 
               <div className="buttons">
                 <Button onClick={AddToCartPay} title="Comprar" />
