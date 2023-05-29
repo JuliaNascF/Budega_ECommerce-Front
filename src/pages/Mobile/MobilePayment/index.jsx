@@ -1,9 +1,8 @@
 
 import { Container, Content } from "./styles";
-import { FaSpinner } from "react-icons/fa";
 import { ButtonText } from "../../../components/ButtonText";
 import { Information} from "../../../components/Information";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";

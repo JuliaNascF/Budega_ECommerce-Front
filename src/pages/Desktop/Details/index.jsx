@@ -79,7 +79,7 @@ export function Details(){
     if (user && user._id) {
       setIsFavorite(true);
       try {
-        const response = await api.post(`/favorites/${currentProductId}`);
+        await api.post(`/favorites/${currentProductId}`);
         
       } catch (error) {
       }
@@ -93,7 +93,7 @@ export function Details(){
     if (user && user._id) {
       setIsFavorite(false);
       try {
-        const response = await api.delete(`/favorites/${currentProductId}`);
+        await api.delete(`/favorites/${currentProductId}`);
       
       } catch (error) {
       }
@@ -125,7 +125,7 @@ export function Details(){
     
     if (user && user._id) {
       try {
-        const response = await api.post(`/cart/${currentProductId}`);
+        await api.post(`/cart/${currentProductId}`);
         setAlertMessageCart("Produto adicionado ao carrinho!");
         setShowAlertCart(true);
       } catch (error) {
@@ -146,7 +146,7 @@ export function Details(){
     
     if (user && user._id) {
       try {
-        const response = await api.post(`/cart/${currentProductId}`);
+        await api.post(`/cart/${currentProductId}`);
         navigate("/cart")
       } catch (error) {
       }
@@ -181,7 +181,7 @@ export function Details(){
               ))}
             </div>
             <div className="selected-image">
-              <img src={data.images?.[selectedIndex]}  />
+              <img src={data.images?.[selectedIndex]} alt="" />
             </div>
             <div className="details">
 

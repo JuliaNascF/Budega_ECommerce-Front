@@ -1,7 +1,4 @@
-import styled, { keyframes } from 'styled-components'
-
-
-
+import styled from 'styled-components'
 
 export const Container = styled.div`
  width: 100%;

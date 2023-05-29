@@ -18,5 +18,9 @@ import styled from "styled-components";
     font-size:16px;
     color:${({ theme }) => theme.COLORS.BLACK}
   }
+
+  &.mobile{
+    margin-left: 30px;
+  }
  
 `;

@@ -47,7 +47,7 @@ export function SignIn() {
             <main>
 
             <Form>
-            <img className="Budega" src={logo} />
+            <img className="Budega" src={logo} alt=""/>
              
 
                 <Input

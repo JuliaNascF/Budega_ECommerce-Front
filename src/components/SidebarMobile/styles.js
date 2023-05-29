@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
  background-color: ${({ theme }) => theme.COLORS.WHITE};
   border-radius: 5px;
-  z-index: 1000;
+  z-index: 2000;
   position: fixed;
-  height: 60%;
+  height: 55%;
   top: 70px;
   width: 300px;
   left: ${props => props.sidebar ? '0' : '-100%'};
@@ -25,5 +25,5 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  padding:  20px;
+  padding:  15px;
 `;

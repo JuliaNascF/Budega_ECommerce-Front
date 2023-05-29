@@ -55,11 +55,6 @@ export const Content = styled.div`
   }
  }
 
-
-button{
-
-}
-   
 `;
 
 

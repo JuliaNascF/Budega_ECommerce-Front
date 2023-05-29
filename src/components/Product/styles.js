@@ -20,8 +20,9 @@ export const Container = styled.div`
 
   
     img{
-    width: 180px;
-    height: 125px;
+      width: 185px;
+  height: 130px;
+  object-fit: contain;
     
    }
   

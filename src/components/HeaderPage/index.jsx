@@ -1,11 +1,11 @@
 import { Container } from "./styles"
-import React, { useState, useEffect, useRef  } from "react";
 
- export function HeaderPage() {
+
+ export function HeaderPage({mobile=false}) {
  
     return (
 
-      <Container>
+      <Container className={mobile? 'mobile' : ''}>
         <h1>Ofertas especiais</h1>
         <p>Os melhores preços</p>
       </Container>

@@ -111,7 +111,7 @@ import cart from "../../../assets/cart.svg"
 
 
           <div className="HeaderPage" style={{ position: "sticky", top: "0px", zIndex: "999" }}>
-            <HeaderPage />
+            <HeaderPage mobile/>
           </div>
 
           <h3>Sofás</h3>

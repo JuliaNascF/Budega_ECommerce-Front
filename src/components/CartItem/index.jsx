@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 import { Input } from '../Input/index'
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { api } from "../../services/api";
 import { BiX } from 'react-icons/bi'
 import { ButtonText } from "../ButtonText";
@@ -58,7 +58,7 @@ export function  CartItem({ data, fetchCartData, cartMobile=false, ...rest }){
   return(
     <Container  className={cartMobile ? 'cartMobile' : ''} {...rest}>
  
-        <img src={thumbnail} />
+        <img src={thumbnail} alt="" />
        
         
         <div className="details">

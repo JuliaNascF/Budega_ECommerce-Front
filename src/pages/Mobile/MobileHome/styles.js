@@ -47,6 +47,8 @@ export const Container = styled.div`
      h3 {
 
     margin-bottom: 20px;
+    margin-left: 30px;
+
     font-size: 22px;
     color:${({ theme }) => theme.COLORS.BLUE_GREEN_800}
   }
@@ -124,7 +126,6 @@ export const Image = styled.div`
 
 export const Content = styled.div`
 
-  max-width: ${px2vw(1070)};
   margin: 0 auto;
   padding-bottom: 50px;
  

@@ -48,7 +48,7 @@ export function Favorites() {
       setFavorites(updatedFavorites);
 
       try {
-        const response = await api.delete(`/favorites/${id}`);
+       await api.delete(`/favorites/${id}`);
         fetchFavorites();
       } catch (error) {
         alert("Erro ao remover produto dos favoritos!");

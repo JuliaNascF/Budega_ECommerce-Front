@@ -50,7 +50,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
     if (user && user._id) {
       setIsFavorite(false);
       try {
-        const response = await api.delete(`/favorites/${data._id}`);
+       await api.delete(`/favorites/${data._id}`);
        
       } catch (error) {
       }
@@ -80,7 +80,7 @@ export function  Product({ data, title, price, thumbnail, ...rest }){
     <Container {...rest}>
          
          
-        <img  onClick={() => handleDetails(data._id)} src={data.thumbnail} />
+        <img className="thumbnail" onClick={() => handleDetails(data._id)} src={data.thumbnail} alt=""/>
       <div className="productDetails">
       <h1  onClick={() => handleDetails(data._id)}>{data.title} </h1>
       <div  onClick={() => handleDetails(data._id)} className="stars">
