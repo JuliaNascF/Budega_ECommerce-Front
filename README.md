@@ -4,6 +4,7 @@
 Budega is a responsive React-based e-commerce project that allows users to register, log in, add products to the shopping cart, favorite products, view products by category, make online purchases, and save a purchase history. The project utilizes styled components for styling, React hooks for authentication and state management, JWT for user authentication, themes for visual customization, and the Slick Carousel component for image display, among other features.
 
 ## Demonstração
+![Peek 06-06-2023 19-40](https://github.com/JuliaNascF/Budega_ECommerce-Front/assets/118016226/f36fedb3-bd8d-47eb-bd3b-8c721ce02d28)
 
 ## Features
 
