@@ -1,70 +1,57 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Budega - Furniture E-commerce React Project
 
-## Available Scripts
+Budega is a responsive React-based e-commerce project that allows users to register, log in, add products to the shopping cart, favorite products, view products by category, make online purchases, and save a purchase history. The project utilizes styled components for styling, React hooks for authentication and state management, JWT for user authentication, themes for visual customization, and the Slick Carousel component for image display, among other features.
 
-In the project directory, you can run:
+## Demonstração
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- User Registration: Users can register in the system by providing their name, email, and password.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Login: Users can log in to the system using their email and password.
 
-### `npm test`
+- Add Products to Shopping Cart: Authenticated users can add products to the shopping cart. The shopping cart allows users to view selected products, including quantity and total price.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Favorite Products: Authenticated users can mark products as favorites to save them in a favorites list.
 
-### `npm run build`
+- View Products by Category: Users can browse products by filtering them based on categories such as living room, kitchen, bedroom, etc.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Online Purchases: Authenticated users can make online purchases by adding products to the shopping cart and completing the purchase process by providing necessary information such as delivery address and payment method.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Purchase History: User's purchases are saved in a history log, allowing them to view their previous purchases.
+## Deploy
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can test the app here: https://budega-e-commerce-front.vercel.app
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Technologies Used
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+React: A JavaScript library for building user interfaces.
 
-## Learn More
+Styled Components: A library for styling React components using CSS-in-JS.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+React Hooks: A React feature for managing state and side effects in functional components.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+JWT (JSON Web Token): A secure token standard for authentication and information exchange between parties.
 
-### Code Splitting
+Themes: Themes are used to customize the visual appearance of the application, allowing users to choose between different styles.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Slick Carousel: A React component used to display images in an elegant carousel.
 
-### Analyzing the Bundle Size
+## Project Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To set up the project on your local machine, follow these steps:
 
-### Making a Progressive Web App
+Clone this repository on your local machine.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ Run the command `npm install` to install the dependencies.
 
-### Advanced Configuration
+ Run the command `npm start` to run the application in development mode.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ Access the application at `http://localhost:3000` in your browser.
 
-### Deployment
+Make sure you have Node.js and npm installed on your machine before running the above commands.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
