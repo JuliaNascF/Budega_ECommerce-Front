@@ -12,11 +12,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AiTwotoneStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useAuth } from "../../../hooks/auth"
 
-export function Details(){
+export function Details() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
@@ -25,10 +28,10 @@ export function Details(){
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlertCart, setShowAlertCart] = useState(false);
   const [alertMessageCart, setAlertMessageCart] = useState("");
-  
- 
 
-  const { user } = useAuth(); 
+
+
+  const { user } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
 
@@ -43,6 +46,8 @@ export function Details(){
       setData(response.data);
       setCategory(response.data.category);
       setCurrentProductId(response.data._id);
+
+      setLoading(false);
     }
 
     fetchProduct();
@@ -51,17 +56,19 @@ export function Details(){
 
   useEffect(() => {
     async function fetchRelatedProducts() {
-      const response = await api.get(`/products/${category}`); 
+      const response = await api.get(`/products/${category}`);
 
       const products = response.data;
       const related = sampleSize(products, 4);
       setRelatedProducts(related);
+
+      setLoading(false);
     }
 
     if (category) {
       fetchRelatedProducts();
     }
-  }, [category,  currentProductId]);
+  }, [category, currentProductId]);
 
   function handleThumbnailClick(index) {
     setSelectedIndex(index);
@@ -74,13 +81,13 @@ export function Details(){
       addToFavorites();
     }
   }
-  
+
   async function addToFavorites() {
     if (user && user._id) {
       setIsFavorite(true);
       try {
         await api.post(`/favorites/${currentProductId}`);
-        
+
       } catch (error) {
       }
     } else {
@@ -88,13 +95,13 @@ export function Details(){
       setShowAlert(true);
     }
   }
-  
+
   async function removeFromFavorites() {
     if (user && user._id) {
       setIsFavorite(false);
       try {
         await api.delete(`/favorites/${currentProductId}`);
-      
+
       } catch (error) {
       }
     } else {
@@ -110,19 +117,19 @@ export function Details(){
           const response = await api.get(`/favorites/check/${currentProductId}`);
           setIsFavorite(response.data.isFavorite);
         } catch (error) {
-          
+
         }
       }
     }
-  
+
     checkFavoriteStatus();
   }, [user, currentProductId]);
-  
+
 
 
   async function AddToCart() {
- 
-    
+
+
     if (user && user._id) {
       try {
         await api.post(`/cart/${currentProductId}`);
@@ -133,17 +140,17 @@ export function Details(){
         setShowAlert(true);
       }
     } else {
-    
+
       setAlertMessage("Você precisa estar logado para adicionar produto ao carrinho!");
       setShowAlert(true);
     }
   }
-  
+
 
 
   async function AddToCartPay() {
- 
-    
+
+
     if (user && user._id) {
       try {
         await api.post(`/cart/${currentProductId}`);
@@ -151,12 +158,12 @@ export function Details(){
       } catch (error) {
       }
     } else {
-    
+
       setAlertMessage("Você precisa estar logado para comprar produtos!");
       setShowAlert(true);
     }
   }
-  
+
 
   return (
     <Container>
@@ -166,77 +173,121 @@ export function Details(){
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />
         </div>
         <Content>
-          <h1>{data.title}</h1>
-          <div className="image-gallery">
-            <div className="thumbnails">
+          {loading ? (
+            <SkeletonTheme baseColor="#d4d3d3" highlightColor="#b8b8b8">
 
-              {data.images && data.images.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  src={imageUrl}
-                  alt={`Thumbnail ${index}`}
-                  onClick={() => handleThumbnailClick(index)}
-                  className={index === selectedIndex ? 'active' : ''}
-                />
-              ))}
-            </div>
-            <div className="selected-image">
-              <img src={data.images?.[selectedIndex]} alt="" />
-            </div>
-            <div className="details">
+              <h1> <Skeleton count={1} height={20} width={200} /></h1>
 
-              <div className="stars">
+              <div className="image-gallery">
+                <div className="thumbnails">
+                  <Skeleton count={1} height={250} width={350} borderRadius={10} style={{ marginRight: '50px' }} />
+                </div>
+                <div style={{ marginLeft: '50px' }} className="details">
+                  <div className="stars">
 
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
-                <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                  </div>
+                  <Skeleton count={3} height={20} />
+                  <div className="buttons">
+                    <Button onClick={AddToCartPay} title="Comprar" />
+                    <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
+                  </div>
+
+                </div>
+
               </div>
+              <h2>Produtos Relacionados</h2>
+              <div className="relatedProducts">
 
-              <div className="price_heart">
-
-                <h1>
-                  {data.price && (
-                    <>
-                      {data.price.currency} {data.price.cents}
-                      <span> à vista</span>
-                    </>
-                  )}
-                </h1>
-
-                <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
+                <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
+                <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
+                <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
+                <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
               </div>
 
 
-              <p>{ data.portion} sem juros </p>
+            </SkeletonTheme>
+          ) : (
 
-              <div className="buttons">
-                <Button onClick={AddToCartPay} title="Comprar" />
-                <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
+            <>
+              <h1>{data.title}</h1>
+              <div className="image-gallery">
+                <div className="thumbnails">
+
+                  {data.images && data.images.map((imageUrl, index) => (
+                    <img
+                      key={index}
+                      src={imageUrl}
+                      alt={`Thumbnail ${index}`}
+                      onClick={() => handleThumbnailClick(index)}
+                      className={index === selectedIndex ? 'active' : ''}
+                    />
+                  ))}
+                </div>
+                <div className="selected-image">
+                  <img src={data.images?.[selectedIndex]} alt="" />
+                </div>
+
+                <div className="details">
+
+                  <div className="stars">
+
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                    <AiTwotoneStar />
+                  </div>
+
+                  <div className="price_heart">
+
+                    <h1>
+                      {data.price && (
+                        <>
+                          {data.price.currency} {data.price.cents}
+                          <span> à vista</span>
+                        </>
+                      )}
+                    </h1>
+
+                    <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
+                  </div>
+
+
+                  <p>{data.portion} sem juros </p>
+
+                  <div className="buttons">
+                    <Button onClick={AddToCartPay} title="Comprar" />
+                    <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
+                  </div>
+
+                </div>
+
               </div>
 
-            </div>
+              <h2>Produtos Relacionados</h2>
+              <div className="relatedProducts">
 
-          </div>
-          <h2>Produtos Relacionados</h2>
-          <div className="relatedProducts">
+                {relatedProducts.map((product) => (
+                  <Product
+                    key={product._id}
+                    thumbnail={product.thumbnail}
+                    category={product.category}
+                    price={product.price}
+                    data={product}
+                  />
+                ))}
+              </div>
 
-          {relatedProducts.map((product) => (
-            <Product
-              key={product._id}
-              thumbnail={product.thumbnail}
-              category={product.category}
-              price={product.price}
-              data={product}
-            />
-          ))}
-          </div>
+              <h3>Descrição</h3>
 
-          <h3>Descrição</h3>
-
-          <p> {data.description}</p>
-
+              <p> {data.description}</p>
+            </>
+          )}
         </Content>
       </main>
       {showAlert && <AlertModal message={alertMessage} showLoginButton onClose={() => setShowAlert(false)} />}

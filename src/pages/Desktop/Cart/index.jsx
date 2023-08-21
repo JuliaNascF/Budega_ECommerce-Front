@@ -59,9 +59,8 @@ export function Cart() {
  
   function handleButtonClick(button) {
     if (activeButton !== button) {
-      setActiveButton(button); // Ativa o botão clicado
+      setActiveButton(button); 
   
-      // Desativa o outro botão, se houver
       const otherButton = button === 'home' ? 'store' : 'home';
       setActiveButton((prevButton) => (prevButton === otherButton ? null : prevButton));
     }

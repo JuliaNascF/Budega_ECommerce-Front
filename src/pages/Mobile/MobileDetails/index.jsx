@@ -12,6 +12,8 @@ import { AiTwotoneStar, AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { FiArrowLeft } from 'react-icons/fi'
 import { sampleSize } from 'lodash';
 import { useAuth } from "../../../hooks/auth"
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +22,7 @@ import "slick-carousel/slick/slick-theme.css";
 export function MobileDetails() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
   const [category, setCategory] = useState('');
   const [currentProductId, setCurrentProductId] = useState('');
@@ -29,7 +32,7 @@ export function MobileDetails() {
   const [alertMessageCart, setAlertMessageCart] = useState("");
 
 
-  const { user } = useAuth(); // Obter o objeto de contexto de autenticação
+  const { user } = useAuth();
   const params = useParams();
   const navigate = useNavigate();
 
@@ -49,6 +52,7 @@ export function MobileDetails() {
       setData(response.data);
       setCategory(response.data.category);
       setCurrentProductId(response.data._id);
+      setLoading(false);
     }
     fetchProduct();
   }, [params.id])
@@ -56,13 +60,13 @@ export function MobileDetails() {
 
   useEffect(() => {
     async function fetchRelatedProducts() {
-      const response = await api.get(`/products/${category}`); 
+      const response = await api.get(`/products/${category}`);
 
       const products = response.data;
       const related = sampleSize(products, 5);
       setRelatedProducts(related);
+      setLoading(false);
     }
-
     if (category) {
       fetchRelatedProducts();
     }
@@ -82,7 +86,7 @@ export function MobileDetails() {
     if (user && user._id) {
       setIsFavorite(true);
       try {
-     await api.post(`/favorites/${currentProductId}`);
+        await api.post(`/favorites/${currentProductId}`);
 
       } catch (error) {
       }
@@ -96,7 +100,7 @@ export function MobileDetails() {
     if (user && user._id) {
       setIsFavorite(false);
       try {
-       await api.delete(`/favorites/${currentProductId}`);
+        await api.delete(`/favorites/${currentProductId}`);
 
       } catch (error) {
       }
@@ -143,16 +147,16 @@ export function MobileDetails() {
 
 
   async function AddToCartPay() {
- 
-    
+
+
     if (user && user._id) {
       try {
-      await api.post(`/cart/${currentProductId}`);
+        await api.post(`/cart/${currentProductId}`);
         navigate("/cart")
       } catch (error) {
       }
     } else {
-    
+
       setAlertMessage("Você precisa estar logado para comprar produtos!");
       setShowAlert(true);
     }
@@ -166,80 +170,123 @@ export function MobileDetails() {
           <ButtonText onClick={handleBack} icon={FiArrowLeft} />
         </div>
         <Content>
-
-          <Slider dots={true} infinite={true} slidesToShow={1} slidesToScroll={1}>
-            {data.images &&
-              data.images.map((imageUrl, index) => (
-                <img key={index} src={imageUrl} alt={index} />
-              ))}
-          </Slider>
+          {loading ? (
 
 
+            <SkeletonTheme baseColor="#d4d3d3" highlightColor="#b8b8b8">
 
-          <div className="details">
+              <Slider>
+                <Skeleton count={1} height={250} width={350} borderRadius={10} />
+              </Slider>
 
-            <h1>{data.title}
+              <div className="details">
 
-            </h1>
-            <div className="heart">
+                <div className="stars">
 
-              <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
-            </div>
-            <div className="stars">
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                </div>
 
-              <AiTwotoneStar />
-              <AiTwotoneStar />
-              <AiTwotoneStar />
-              <AiTwotoneStar />
-              <AiTwotoneStar />
-            </div>
+                <Skeleton count={3} height={20} />
 
-            <div className="price_heart">
+                <div className="buttons">
+                  <Button title="Comprar" onClick={AddToCartPay} />
+                  <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
+                </div>
 
-              <h1>
-                {data.price && (
-                  <>
-                    {data.price.currency} {data.price.cents}
-                    <span> à vista</span>
-                  </>
-                )}
-              </h1>
+              </div>
+
+              <h2>Produtos Relacionados</h2>
+
+              <div className="relatedProducts" style={{
+                display: "flex",
+                scrollBehavior: "smooth"
+              }} >
+                  <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
+                  <Skeleton containerClassName="flex-1" height={300} width={250} borderRadius={10} style={{ marginRight: '10px' }} />
+
+              </div>
+
+            </SkeletonTheme>
+          ) : (
+            <>
+              <Slider dots={true} infinite={true} slidesToShow={1} slidesToScroll={1}>
+                {data.images &&
+                  data.images.map((imageUrl, index) => (
+                    <img key={index} src={imageUrl} alt={index} />
+                  ))}
+              </Slider>
 
 
-            </div>
+
+              <div className="details">
+
+                <h1>{data.title}
+
+                </h1>
+                <div className="heart">
+
+                  <ButtonText color icon={isFavorite ? AiFillHeart : AiOutlineHeart} onClick={handleFavoriteClick} />
+                </div>
+                <div className="stars">
+
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                  <AiTwotoneStar />
+                </div>
+
+                <div className="price_heart">
+
+                  <h1>
+                    {data.price && (
+                      <>
+                        {data.price.currency} {data.price.cents}
+                        <span> à vista</span>
+                      </>
+                    )}
+                  </h1>
 
 
-            <p>{ data.portion} sem juros </p>
+                </div>
 
-            <div className="buttons">
-              <Button title="Comprar" onClick={AddToCartPay} />
-              <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
-            </div>
 
-          </div>
+                <p>{data.portion} sem juros </p>
 
-          <h3>Descrição</h3>
+                <div className="buttons">
+                  <Button title="Comprar" onClick={AddToCartPay} />
+                  <Button title="Adicionar ao carrinho" cart onClick={AddToCart} />
+                </div>
 
-          <p> {data.description}</p>
+              </div>
+              <h3>Descrição</h3>
 
-          <h2>Produtos Relacionados</h2>
+              <p> {data.description}</p>
 
-          <div className="relatedProducts" style={{
-              display: "flex",
-              scrollBehavior: "smooth"
-            }} >
+              <h2>Produtos Relacionados</h2>
 
-            {relatedProducts.map((product) => (
-              <Product
-                key={product._id}
-                thumbnail={product.thumbnail}
-                category={product.category}
-                price={product.price}
-                data={product}
-                onClick={() => handleDetails(product._id)}
-              />
-            ))}
-            </div>
+              <div className="relatedProducts" style={{
+                display: "flex",
+                scrollBehavior: "smooth"
+              }} >
+
+                {relatedProducts.map((product) => (
+                  <Product
+                    key={product._id}
+                    thumbnail={product.thumbnail}
+                    category={product.category}
+                    price={product.price}
+                    data={product}
+                    onClick={() => handleDetails(product._id)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
 
         </Content>
       </main>
